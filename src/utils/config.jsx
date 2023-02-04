@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ACCESS_TOKEN, DOMAIN } from "../constants/index";
+import { ACCESS_TOKEN, DOMAIN, TOKEN_CYBERSOFT } from "../constants/index";
+import { history } from "../index";
 
 export const http = axios.create({
   baseURL: DOMAIN,

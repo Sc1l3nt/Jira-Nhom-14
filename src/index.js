@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-  Navigate,
   Route,
   Routes,
   unstable_HistoryRouter as HistoryRouter,
