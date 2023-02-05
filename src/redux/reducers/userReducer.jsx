@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { http } from "../../utils/config";
 import { history } from "../../index";
+import { ACCESS_TOKEN, USER_LOGIN } from "../../constants";
 
 const initialState = {
-  userLogin: null,
+  userLogin: JSON.parse(localStorage.getItem(USER_LOGIN)) || null,
   userProfile: null,
   userList: [],
 };
@@ -33,6 +34,9 @@ const userReducer = createSlice({
     getUserByProjectIdAction: (state, action) => {
       state.userProfile = action.payload;
     },
+    getMyInfoAction: (state, action) => {
+      state.userLogin = action.payload;
+    },
   },
 });
 
@@ -44,6 +48,7 @@ export const {
   deleteUserAction,
   getUserByProjectIdAction,
   loginFacebookAction,
+  getMyInfoAction,
 } = userReducer.actions;
 
 export default userReducer.reducer;
@@ -112,6 +117,24 @@ export const getUserByProjectIdApi = (projectId) => {
       `Users/getUserByProjectId?idProject=${projectId}`
     );
     const action = getUserByProjectIdAction(result.data.content);
+    dispatch(action);
+  };
+};
+
+export const getMyInfoApi = (params) => {
+  return async (dispatch) => {
+    const result = await http.get("/Users/getUser", { params });
+    const userLoginLocal = JSON.parse(localStorage.getItem(USER_LOGIN));
+    const me = result.data.content.find(
+      (user) => user.userId === userLoginLocal.userId
+    );
+    if (!me) {
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(USER_LOGIN);
+      window.location.reload();
+      return;
+    }
+    const action = getAllUserAction(me);
     dispatch(action);
   };
 };

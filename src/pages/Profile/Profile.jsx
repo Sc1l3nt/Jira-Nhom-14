@@ -3,6 +3,8 @@ import * as yup from "yup";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Col, Form, Input, Row, Typography } from "antd";
+import { changeInfoApi } from "../../redux/reducers/userReducer";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -37,7 +39,20 @@ const Profile = () => {
     },
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    console.log(formik.values);
+    await dispatch(changeInfoApi(formik.values));
+    setTimeout(() => {
+      //dispatch(getUser); sau khi xog, reload lại, kiểu lấy lại thông tin
+      Swal.fire({
+        title: "User updated successfully",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      formik.resetForm();
+      window.location.reload();
+    }, 400);
+  };
   return (
     <div style={{ maxWidth: 980 }} className="mx-auto">
       <Row>
