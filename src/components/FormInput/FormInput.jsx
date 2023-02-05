@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { LockOutlined, UserOutlined, PhoneOutlined } from "@ant-design/icons";
 import { Button, Input, Checkbox, Form } from "antd";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginApi, registerApi } from "../../Redux/Reducers/userReducer";
+import { loginApi, registerApi } from "../../redux/reducers/userReducer";
 
 const FormInput = (props) => {
   let { listRender, textButton, link } = props;
+
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
   };
@@ -15,29 +15,8 @@ const FormInput = (props) => {
   const renderComponent = (component) => {
     return component;
   };
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [name, setName] = useState("");
-
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    if (!passwordConfirm) {
-      const actionLogin = loginApi({ email, passWord: password });
-      dispatch(actionLogin);
-    } else {
-      const actionRegister = registerApi({
-        email,
-        password,
-        name,
-        phoneNumber,
-      });
-      dispatch(actionRegister);
-    }
-  };
   return (
     <Form
       className="d-flex flex-column justify-content-center align-items-center"
@@ -62,7 +41,6 @@ const FormInput = (props) => {
                   maxLength={255}
                   id="email"
                   name="email"
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Item>
             );
@@ -75,7 +53,6 @@ const FormInput = (props) => {
                 placeholder="Password"
                 prefix={<LockOutlined />}
                 allowClear
-                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 name="password"
               />
@@ -95,7 +72,6 @@ const FormInput = (props) => {
                   prefix={<LockOutlined />}
                   id="passwordConfirm"
                   name="passwordConfirm"
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
               </Form.Item>
             );
@@ -108,7 +84,6 @@ const FormInput = (props) => {
                   size="large"
                   placeholder="Name"
                   prefix={<UserOutlined />}
-                  onChange={(e) => setName(e.target.value)}
                   id="name"
                   name="name"
                 />
@@ -123,7 +98,6 @@ const FormInput = (props) => {
                   size="large"
                   placeholder="Phone number"
                   prefix={<PhoneOutlined />}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
                   id="phone"
                   name="phone"
                 />
@@ -151,7 +125,7 @@ const FormInput = (props) => {
         );
       })}
       <Form.Item className="w-100" style={{ marginLeft: "50%" }}>
-        <Button className="mt-4 w-50" size="large" onClick={handleSubmit}>
+        <Button className="mt-4 w-50" size="large">
           {textButton}
         </Button>
       </Form.Item>
