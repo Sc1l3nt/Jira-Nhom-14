@@ -16,6 +16,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
+import Users from "./pages/Users/Users";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -56,7 +57,7 @@ root.render(
         <Route path="projects/:projectId/board" element={<Tasks />} /> */}
         {/* USER ROUTE  */}
         <Route path="profile" element={<Profile />} />
-        {/* <Route path="users" element={<ListUser />} /> */}
+        <Route path="users" element={<Users />} />
       </Routes>
     </HistoryRouter>
   </Provider>
