@@ -77,7 +77,6 @@ export const registerApi = (userRegister) => {
     const result = await http.post("/Users/signup", userRegister);
     const action = registerAction(result.data.content);
     dispatch(action);
-    history.push("/login");
   };
 };
 
