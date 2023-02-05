@@ -1,11 +1,11 @@
 import React from 'react'
-import HomeTemplate from '../templates/HomeTemplate/HomeTemplate'
-import HomeTemplateMobile from '../templates/HomeTemplate/HomeTemplateMobile'
+import LoginTemplate from '../templates/LoginTemplate/LoginTemplate'
+import LoginTemplateMobile from '../templates/LoginTemplate/LoginTemplateMobile'
 import ReponsiveItem from './ReponsiveItem'
 
 const Test = () => {
     return (
-        <ReponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile}/>
+        <ReponsiveItem component={LoginTemplate} componentMobile={LoginTemplateMobile}/>
     )
 }
 

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Menu } from 'antd'
-import { ProjectOutlined, SettingOutlined } from '@ant-design/icons'
+import HomeMenu from './HomeMenu'
 
 const HomeSider = () => {
     return (
-        <div style={{backgroundColor: '#ffffff'}}>
+        <div className='sider' style={{ backgroundColor: '#ffffff' }}>
             <div className="logo">
                 <div className='d-flex justify-content-center py-3'>
                     <div className='w-50'>
@@ -12,24 +11,7 @@ const HomeSider = () => {
                     </div>
                 </div>
             </div>
-            <Menu
-                className='fs-6'
-                mode="inline"
-                defaultSelectedKeys={['1']}
-                onClick={(item)=>{console.log(item.key)}}
-                items={[
-                    {
-                        key: '1',
-                        icon: <ProjectOutlined className='fs-5'/>,
-                        label: 'Kanban Board',
-                    },
-                    {
-                        key: '2',
-                        icon: <SettingOutlined className='fs-5'/>,
-                        label: 'Project Settings',
-                    },
-                ]}
-            />
+            <HomeMenu/>
         </div>
     )
 }

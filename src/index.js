@@ -9,6 +9,7 @@ import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 import Test from './components/Test'
+import './index.scss'
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
