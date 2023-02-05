@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons'
+import { ProjectOutlined, SettingOutlined } from '@ant-design/icons'
 
 const HomeSider = () => {
     return (
@@ -13,23 +13,20 @@ const HomeSider = () => {
                 </div>
             </div>
             <Menu
+                className='fs-6'
                 mode="inline"
                 defaultSelectedKeys={['1']}
+                onClick={(item)=>{console.log(item.key)}}
                 items={[
                     {
                         key: '1',
-                        icon: <UserOutlined />,
-                        label: 'nav 1',
+                        icon: <ProjectOutlined className='fs-5'/>,
+                        label: 'Kanban Board',
                     },
                     {
                         key: '2',
-                        icon: <VideoCameraOutlined />,
-                        label: 'nav 2',
-                    },
-                    {
-                        key: '3',
-                        icon: <UploadOutlined />,
-                        label: 'nav 3',
+                        icon: <SettingOutlined className='fs-5'/>,
+                        label: 'Project Settings',
                     },
                 ]}
             />

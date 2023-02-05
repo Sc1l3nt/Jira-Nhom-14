@@ -6,7 +6,7 @@ const HomeHeader = () => {
             <div>search</div>
             <button className='userIcon btn'>
                 <div>
-                    a
+                    profile
                 </div>
             </button>
         </div>
