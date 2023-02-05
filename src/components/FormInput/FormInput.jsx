@@ -4,6 +4,9 @@ import { Button, Input, Checkbox, Form } from "antd";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginApi, registerApi } from "../../redux/reducers/userReducer";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import swal from "sweetalert2";
 
 const FormInput = (props) => {
   let { listRender, textButton, link } = props;
@@ -16,6 +19,60 @@ const FormInput = (props) => {
     return component;
   };
   const dispatch = useDispatch();
+
+  const formLogin = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required("Email is required!"),
+      password: yup
+        .string()
+        .required("Password is required!")
+        .min(6, "Password must have 6-50 characters!")
+        .max(50, "Password must have 6-50 characters!"),
+      name: yup.string().required("Username is required!"),
+      phoneNumber: yup
+        .string()
+        .required("Phone is required!")
+        .matches(/^[0-9]+$/g, "Phone must be a number!"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+      formLogin.setTouched({
+        email: true,
+        password: true,
+      });
+
+      if (!formLogin.isValid) {
+        swal("Please check again!");
+        return;
+      }
+    },
+  });
+
+  const formRegister = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      name: "",
+      phoneNumber: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required("Email is required!"),
+      password: yup
+        .string()
+        .required("Password is required!")
+        .min(6, "Password must have 6-50 characters!")
+        .max(50, "Password must have 6-50 characters!"),
+      name: yup.string().required("Username is required!"),
+      phoneNumber: yup
+        .string()
+        .required("Phone is required!")
+        .matches(/^[0-9]+$/g, "Phone must be a number!"),
+    }),
+  });
 
   return (
     <Form
@@ -41,6 +98,8 @@ const FormInput = (props) => {
                   maxLength={255}
                   id="email"
                   name="email"
+                  onChange={formLogin.handleChange}
+                  onBlur={formLogin.handleBlur}
                 />
               </Form.Item>
             );
@@ -55,6 +114,8 @@ const FormInput = (props) => {
                 allowClear
                 id="password"
                 name="password"
+                onChange={formLogin.handleChange}
+                onBlur={formLogin.handleBlur}
               />
             );
             break;
@@ -125,7 +186,11 @@ const FormInput = (props) => {
         );
       })}
       <Form.Item className="w-100" style={{ marginLeft: "50%" }}>
-        <Button className="mt-4 w-50" size="large">
+        <Button
+          className="mt-4 w-50"
+          size="large"
+          onClick={formLogin.handleSubmit}
+        >
           {textButton}
         </Button>
       </Form.Item>
