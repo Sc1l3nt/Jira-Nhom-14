@@ -1,0 +1,31 @@
+@import '../../../index.scss';
+.btn:hover{
+    .icon-drop{
+        animation: fadeDown .5s;
+    }
+}
+
+.info{
+    .user{
+        text-align: center;
+    }
+}
+
+@keyframes fadeDown{
+    0%{
+        transform: translateY(0);
+        opacity: 1;
+    };
+    49%{
+        transform: translateY(100%);
+        opacity: 0;
+    };
+    51%{
+        transform: translateY(-100%);
+        opacity: 0;
+    };
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    };
+}

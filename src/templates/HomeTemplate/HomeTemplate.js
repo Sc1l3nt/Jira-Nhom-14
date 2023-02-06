@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import HomeSider from '../../components/template/Hometemplate/HomeSider';
 import HomeHeader from '../../components/template/Hometemplate/HomeHeader';
 import CreateIssue from '../../components/template/CreateIssue/CreateIssue';
+import { Outlet } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
@@ -17,12 +18,12 @@ const HomeTemplate = () => {
             <Sider trigger={null} collapsible collapsed={collapsed} className='border border-3 border-primary rounded-end bg-white'>
                 <HomeSider collapsed={collapsed}/>
             </Sider>
-            <Layout className="site-layout">
+            <Layout className="site-layout ms-1">
                 <Header className='bg-white p-0'>
                     <HomeHeader handleChangeCollapsed={handleChangeCollapsed} collapsed={collapsed} />
                 </Header>
                 <Content className='bg-white border border-primary border-3 rounded mt-2 ms-2'>
-                    Content
+                    <Outlet/>
                 </Content>
             </Layout>
             <CreateIssue/>

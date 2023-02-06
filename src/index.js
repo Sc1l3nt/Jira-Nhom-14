@@ -54,20 +54,22 @@ root.render(
               componentMobile={HomeTemplateMobile}
             />
           }
-        ></Route>
+        >
+          {/* PROJECT ROUTE  */}
+          <Route path="projects" element={<Projects />} />
+          <Route path="projects/new" element={<ProjectNew />} />
+          <Route path="projects/:id" element={<ProjectDetail />} />
+          <Route path="projects/:id/edit" element={<ProjectEdit />} />
+          <Route
+            path="projects/:projectId/board"
+            element={<ProjectManagement />}
+          />
+          {/* USER ROUTE  */}
+          <Route path="profile" element={<Profile />} />
+          <Route path="users" element={<Users />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
-        {/* PROJECT ROUTE  */}
-        <Route path="projects" element={<Projects />} />
-        <Route path="projects/new" element={<ProjectNew />} />
-        <Route path="projects/:id" element={<ProjectDetail />} />
-        <Route path="projects/:id/edit" element={<ProjectEdit />} />
-        <Route
-          path="projects/:projectId/board"
-          element={<ProjectManagement />}
-        />
-        {/* USER ROUTE  */}
-        <Route path="profile" element={<Profile />} />
-        <Route path="users" element={<Users />} />
+
       </Routes>
     </HistoryRouter>
   </Provider>
