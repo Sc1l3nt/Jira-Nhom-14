@@ -29,7 +29,7 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
-        <Route index element={<Test/>}/>
+        <Route index element={<Test />} />
         <Route
           path="/"
           element={
@@ -50,17 +50,18 @@ root.render(
               componentMobile={HomeTemplateMobile}
             />
           }
-        ></Route>
-        <Route path="*" element={<PageNotFound />} />
-        {/* PROJECT ROUTE  */}
-        <Route path="projects" element={<Projects />} />
-        {/* <Route path="projects/new" element={<ProjectNew />} />
+        >
+          <Route path="*" element={<PageNotFound />} />
+          {/* PROJECT ROUTE  */}
+          <Route path="projects" element={<Projects />} />
+          {/* <Route path="projects/new" element={<ProjectNew />} />
         <Route path="projects/:id" element={<ProjectDetail />} />
         <Route path="projects/:id/edit" element={<ProjectEdit />} />
         <Route path="projects/:projectId/board" element={<Tasks />} /> */}
-        {/* USER ROUTE  */}
-        <Route path="profile" element={<Profile />} />
-        <Route path="users" element={<Users />} />
+          {/* USER ROUTE  */}
+          <Route path="profile" element={<Profile />} />
+          <Route path="users" element={<Users />} />
+        </Route>
       </Routes>
     </HistoryRouter>
   </Provider>
