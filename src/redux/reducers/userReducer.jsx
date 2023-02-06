@@ -117,11 +117,15 @@ export const deleteUserApi = (userId) => {
 
 export const getUserByProjectIdApi = (projectId) => {
   return async (dispatch) => {
-    const result = await http.get(
-      `Users/getUserByProjectId?idProject=${projectId}`
-    );
-    const action = getUserByProjectIdAction(result.data.content);
-    dispatch(action);
+    try {
+      const result = await http.get(
+        `Users/getUserByProjectId?idProject=${projectId}`
+      );
+      const action = getUserByProjectIdAction(result.data.content);
+      dispatch(action);
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

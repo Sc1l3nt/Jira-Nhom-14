@@ -9,7 +9,15 @@ import {
 } from "../../../redux/reducers/projectReducer";
 import Swal from "sweetalert2";
 import AddMemberModal from "../../../components/AddMemberModal/AddMemberModal";
-import { Breadcrumb, Button, Form, Input, Select, Typography } from "antd";
+import {
+  Breadcrumb,
+  Button,
+  Form,
+  Input,
+  Modal,
+  Select,
+  Typography,
+} from "antd";
 import { Link } from "react-router-dom";
 import TinyMCEEditor from "../../../components/TinyMCEEditor/TinyMCEEditor";
 
@@ -53,17 +61,13 @@ const ProjectNew = () => {
   const handleSubmit = async () => {
     try {
       await dispatch(createProjectAuthorizeApi(formik.values));
-      Swal.fire(
-        {
-          title: "Project was created successfully!",
-          icon: "success",
-          confirmButtonText: "OK",
-        },
-        () => {
-          formik.resetForm();
-          setShowAddMembersModal(true);
-        }
-      );
+      Swal.fire({
+        title: "Project was created successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      formik.resetForm();
+      setShowAddMembersModal(true);
     } catch (error) {
       console.log(error);
     }
@@ -155,14 +159,14 @@ const ProjectNew = () => {
         </Form.Item>
 
         <div className="flex">
-          <Link
-            to="/projects"
-            className="flex justify-center items-center h-8 bg-gray-300 hover:bg-gray-400 focus:bg-blue-300 text-gray-700 hover:text-gray-700 focus:text-blue-700 border-0 mr-1 font-medium py-1.5 px-3 rounded"
-          >
-            Cancel
-          </Link>
-
-          <Button htmlType="submit">Create</Button>
+          <Button style={{ marginRight: "1%" }}>
+            <Link to="/projects" style={{ textDecoration: "none" }}>
+              Cancel
+            </Link>
+          </Button>
+          <Button htmlType="submit" type="primary">
+            Create
+          </Button>
         </div>
       </Form>
 

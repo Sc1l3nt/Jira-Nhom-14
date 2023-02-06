@@ -93,21 +93,20 @@ const Projects = () => {
         <Typography.Title level={3} className="flex-grow">
           Projects
         </Typography.Title>
-        <Link
-          to="/projects/new"
-          className="flex justify-center items-center h-8 bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white hover:text-white font-medium py-1.5 px-3 rounded cursor-pointer"
-        >
-          Create project
-        </Link>
-      </div>
-
-      <div>
-        <Input
-          allowClear
-          suffix={<SearchOutlined />}
-          className="mb-6 w-48 rounded"
-          onChange={handleSearch}
-        />
+        <div className="d-flex justify-content-between">
+          <Button type="primary">
+            <Link to="/projects/new" style={{ textDecoration: "none" }}>
+              Create project
+            </Link>
+          </Button>
+          <Input
+            allowClear
+            suffix={<SearchOutlined />}
+            className="mb-6 w-48 rounded"
+            onChange={handleSearch}
+            style={{ width: "50%" }}
+          />
+        </div>
       </div>
 
       {!tableIsBreak && (
