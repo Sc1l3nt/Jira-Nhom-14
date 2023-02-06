@@ -63,19 +63,12 @@ const Projects = () => {
       Modal.confirm({
         title: `Are you sure to delete\n${projectName}?`,
         okText: "Delete",
-        okButtonProps: {
-          className:
-            "bg-red-600 hover:bg-red-500 focus:bg-red-500 text-white font-semibold hover:text-white focus:text-white border-red-600 hover:border-red-500 focus:border-red-500 rounded",
-        },
-        cancelButtonProps: {
-          className:
-            "bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded",
-        },
         zIndex: 1050,
         centered: true,
         onOk: () => {
           handleDeleteProject(projectId);
         },
+        cancelText: "Cancel",
       });
     };
   };
