@@ -53,6 +53,12 @@ const projectReducer = createSlice({
     removeUserFromProjectAction: (state, action) => {
       state.projectDetail = action.payload;
     },
+    setProjectDetailNullAction: (state, action) => {
+      state.projectDetail = action.payload;
+    },
+    setProjectErrorNullAction: (state, action) => {
+      state.projectError = action.payload;
+    },
   },
 });
 
@@ -69,6 +75,8 @@ export const {
   assignUserTaskAction,
   removeUserFromTaskAction,
   removeUserFromProjectAction,
+  setProjectDetailNullAction,
+  setProjectErrorNullAction,
 } = projectReducer.actions;
 
 export default projectReducer.reducer;
