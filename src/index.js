@@ -8,7 +8,6 @@ import {
 import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
-import Test from './components/Test';
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
 import HomeTemplateMobile from "./templates/HomeTemplate/HomeTemplateMobile";
 import ReponsiveItem from "./components/ReponsiveItem";
@@ -17,8 +16,11 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
 import Users from "./pages/Users/Users";
+import Projects from "./pages/Projects/Projects";
 //SCSS
 import './index.scss'
+import LoginTemplate from "./templates/LoginTemplate/LoginTemplate";
+import LoginTemplateMobile from "./templates/LoginTemplate/LoginTemplateMobile";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -26,8 +28,7 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
-        <Route index element={<Test />} />
-        {/* <Route
+        <Route
           path="/"
           element={
             <ReponsiveItem
@@ -38,9 +39,7 @@ root.render(
         >
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-        </Route> */}
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        </Route>
         <Route
           path="/"
           element={
@@ -52,8 +51,8 @@ root.render(
         ></Route>
         <Route path="*" element={<PageNotFound />} />
         {/* PROJECT ROUTE  */}
-        {/* <Route path="projects" element={<Projects />} />
-        <Route path="projects/new" element={<ProjectNew />} />
+        <Route path="projects" element={<Projects />} />
+        {/* <Route path="projects/new" element={<ProjectNew />} />
         <Route path="projects/:id" element={<ProjectDetail />} />
         <Route path="projects/:id/edit" element={<ProjectEdit />} />
         <Route path="projects/:projectId/board" element={<Tasks />} /> */}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Layout } from "antd";
 import '../../assets/scss/template/LoginTemplate.scss'
 import '../../assets/scss/template/TextName.scss'
+import { Outlet } from 'react-router-dom';
 
 const { Sider, Content } = Layout;
 
@@ -15,8 +16,10 @@ const LoginTemplate = () => {
                     </div>
                     <h5 className='text-name position-absolute'>Author: Trương Văn Đại & Trần Minh Bảo</h5>
                 </Sider>
-                <Content>
-                    Content
+                <Content className='d-flex justify-content-center align-items-center'>
+                    <div className="border rounded border-primary border-3 bg-white px-5 py-3">
+                        <Outlet />
+                    </div>
                 </Content>
             </Layout>
         </div>

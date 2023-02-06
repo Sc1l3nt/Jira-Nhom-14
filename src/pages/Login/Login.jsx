@@ -112,22 +112,24 @@ const Login = () => {
             color: "#fff",
             borderRadius: 5,
           }}
-          className="mt-5 lg:w-1/2"
+          className="mt-5 w-100"
           onClick={() => handleSubmit()}
         >
           Login
         </Button>
 
-        <p>
-          Don't have an account yet?
-          <NavLink to="/register" className="text-blue-500">
-            {" "}
-            Register now
-          </NavLink>
-        </p>
+        <div className="d-flex justify-content-center">
+          <p className="mt-2">
+            Don't have an account yet?
+            <NavLink to="/register" className="text-blue-500">
+              {" "}
+              Register now
+            </NavLink>
+          </p>
+        </div>
 
         {/* fb btn*/}
-        <div className="social mt-3 flex">
+        <div className="social mt-3 d-flex justify-content-center">
           <Button
             style={{
               backgroundColor: "rgb(59,89,152)",
@@ -138,7 +140,7 @@ const Login = () => {
             shape="circle"
           >
             <span
-              className="font-bold flex justify-center"
+              className="font-bold"
               style={{ color: "#fff", fontSize: 20 }}
             >
               f

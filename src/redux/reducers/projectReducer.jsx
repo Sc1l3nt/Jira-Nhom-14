@@ -73,9 +73,9 @@ export const {
 
 export default projectReducer.reducer;
 
-export const getAllProjectApi = () => {
+export const getAllProjectApi = (params) => {
   return async (dispatch) => {
-    const result = await http.get(`/Project/getAllProject`);
+    const result = await http.get(`/Project/getAllProject`, { params });
     const action = getAllProjectAction(result.data.content);
     dispatch(action);
   };
