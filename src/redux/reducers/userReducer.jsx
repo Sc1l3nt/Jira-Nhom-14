@@ -7,6 +7,7 @@ const initialState = {
   userLogin: JSON.parse(localStorage.getItem(USER_LOGIN)) || null,
   userProfile: null,
   userList: [],
+  userByProjectId: null,
 };
 
 const userReducer = createSlice({
@@ -31,9 +32,6 @@ const userReducer = createSlice({
     deleteUserAction: (state, action) => {
       state.userList = action.payload;
     },
-    getUserByProjectIdAction: (state, action) => {
-      state.userProfile = action.payload;
-    },
     getMyInfoAction: (state, action) => {
       state.userLogin = action.payload;
     },
@@ -46,7 +44,6 @@ export const {
   changeInfoAction,
   getAllUserAction,
   deleteUserAction,
-  getUserByProjectIdAction,
   loginFacebookAction,
   getMyInfoAction,
 } = userReducer.actions;
@@ -112,20 +109,6 @@ export const deleteUserApi = (userId) => {
     dispatch(action);
     dispatch(getAllUserApi());
     window.location.reload();
-  };
-};
-
-export const getUserByProjectIdApi = (projectId) => {
-  return async (dispatch) => {
-    try {
-      const result = await http.get(
-        `Users/getUserByProjectId?idProject=${projectId}`
-      );
-      const action = getUserByProjectIdAction(result.data.content);
-      dispatch(action);
-    } catch (error) {
-      console.log(error);
-    }
   };
 };
 

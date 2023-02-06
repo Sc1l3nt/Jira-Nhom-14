@@ -16,31 +16,25 @@ import Swal from "sweetalert2";
 import { history } from "../../index";
 import {
   assignUserToProjectApi,
+  getUsersByProjectIdApi,
   removeUserFromProjectApi,
   setProjectErrorNullAction,
 } from "../../redux/reducers/projectReducer";
-import {
-  getAllUserApi,
-  getUserByProjectIdApi,
-} from "../../redux/reducers/userReducer";
+import { getAllUserApi } from "../../redux/reducers/userReducer";
 
 const AddMemberModal = (props) => {
-  console.log(props.visible);
   const { showFooter = true } = props;
   const dispatch = useDispatch();
   const { projectMembers, projectError } = useSelector(
     (state) => state.projectReducer
   );
-  const { userList, userProfile } = useSelector((state) => state.userReducer);
+  const { userList } = useSelector((state) => state.userReducer);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const usersRef = useRef(null);
   const searchRef = useRef(null);
 
-  console.log(userList);
-  console.log(userProfile);
-
   useEffect(() => {
-    dispatch(getUserByProjectIdApi(props.project.id));
+    //dispatch(getUsersByProjectIdApi(props.project.id));
     dispatch(getAllUserApi());
   }, [dispatch, props.project.id]);
 
@@ -79,38 +73,36 @@ const AddMemberModal = (props) => {
         style: { top: 80 },
         maskClosable: true,
         afterClose: () => {
-          dispatch(dispatch(setProjectErrorNullAction(null)));
+          dispatch(setProjectErrorNullAction(null));
         },
       });
     }
   }, [projectError, dispatch]);
 
-  const addMemberToProject = async (userId) => {
+  const addMemberToProject = (userId) => () => {
     const data = { projectId: props.project.id, userId };
-    await dispatch(assignUserToProjectApi(data));
-    await dispatch(getUserByProjectIdApi(props.project.id));
-    Swal.fire({
-      title: "Add member successfully",
-      icon: "success",
-      cancelButtonText: "OK",
-    });
-    if (props.onFetchProject) {
-      props.onFetchProject();
-    }
+    console.log(data);
+    dispatch(
+      assignUserToProjectApi(data, () => {
+        dispatch(getUsersByProjectIdApi(props.project.id));
+        if (props.onFetchProject) {
+          props.onFetchProject();
+        }
+      })
+    );
   };
 
-  const removeMemberFromProject = async (userId) => {
+  const removeMemberFromProject = (userId) => () => {
     const data = { projectId: props.project.id, userId };
-    await dispatch(removeUserFromProjectApi(data));
-    await dispatch(getUserByProjectIdApi(props.project.id));
-    Swal.fire({
-      title: "Remove member successfully",
-      icon: "success",
-      cancelButtonText: "OK",
-    });
-    if (props.onFetchProject) {
-      props.onFetchProject();
-    }
+    console.log(data);
+    dispatch(
+      removeUserFromProjectApi(data, () => {
+        dispatch(getUsersByProjectIdApi(props.project.id));
+        if (props.onFetchProject) {
+          props.onFetchProject();
+        }
+      })
+    );
   };
 
   const handleGoToProjectsButtonClick = () => {
@@ -164,14 +156,14 @@ const AddMemberModal = (props) => {
                 <Button
                   key="projects"
                   onClick={handleGoToProjectsButtonClick}
-                  className="h-8 bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white hover:text-white focus:text-white font-medium py-1.5 px-3 rounded border-0"
+                  type="primary"
                 >
                   Go to projects
                 </Button>,
                 <Button
                   key="newProject"
                   onClick={props.onCancel}
-                  className="h-8 bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white hover:text-white focus:text-white font-medium py-1.5 px-3 rounded border-0"
+                  type="primary"
                 >
                   Create new project
                 </Button>,
@@ -223,8 +215,8 @@ const AddMemberModal = (props) => {
                   />
                   <div>
                     <Button
-                      onClick={() => addMemberToProject(item.userId)}
-                      className="flex justify-center items-center h-8 bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white hover:text-white focus:text-white font-medium py-1.5 px-3 rounded border-0"
+                      onClick={addMemberToProject(item.userId)}
+                      type="primary"
                     >
                       Add
                     </Button>
@@ -258,7 +250,7 @@ const AddMemberModal = (props) => {
                   <div>
                     <Button
                       onClick={removeMemberFromProject(item.userId)}
-                      className="flex justify-center items-center h-8 bg-red-700 hover:bg-red-600 focus:bg-red-600 text-white hover:text-white focus:text-white font-medium py-1.5 px-3 rounded border-0"
+                      danger
                     >
                       Remove
                     </Button>

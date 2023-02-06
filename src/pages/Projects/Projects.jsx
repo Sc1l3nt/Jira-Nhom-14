@@ -73,8 +73,8 @@ const Projects = () => {
     };
   };
 
-  const handleDeleteProject = async (projectId) => {
-    await dispatch(deleteProjectApi(projectId));
+  const handleDeleteProject = (projectId) => {
+    dispatch(deleteProjectApi(projectId));
     showProjectDeletedSuccessfullyModal();
   };
 
@@ -89,12 +89,12 @@ const Projects = () => {
 
   return (
     <>
-      <div className="mb-3 flex items-start">
-        <Typography.Title level={3} className="flex-grow">
+      <div className="mb-3 d-flex align-items-start">
+        <Typography.Title level={3} className="flex-grow me-5">
           Projects
         </Typography.Title>
         <div className="d-flex justify-content-between">
-          <Button type="primary">
+          <Button type="primary" className="me-5">
             <Link to="/projects/new" style={{ textDecoration: "none" }}>
               Create project
             </Link>
@@ -102,9 +102,8 @@ const Projects = () => {
           <Input
             allowClear
             suffix={<SearchOutlined />}
-            className="mb-6 w-48 rounded"
+            className="w-75"
             onChange={handleSearch}
-            style={{ width: "50%" }}
           />
         </div>
       </div>
@@ -122,12 +121,7 @@ const Projects = () => {
             dataIndex="projectName"
             key="projectName"
             render={(projectName, record) => (
-              <Link
-                to={`/projects/${record.id}/board`}
-                className="text-blue-700 hover:text-blue-700 focus:text-blue-700"
-              >
-                {projectName}
-              </Link>
+              <Link to={`/projects/${record.id}/board`}>{projectName}</Link>
             )}
             sorter={(a, b) => a.projectName.localeCompare(b.projectName)}
           />
@@ -192,7 +186,7 @@ const Projects = () => {
                   overlay={menu}
                   trigger={["click"]}
                 >
-                  <Button className="flex justify-center items-center py-0 px-2 border-0 rounded shadow-none text-black hover:text-black focus:text-white bg-transparent hover:bg-gray-300 focus:bg-gray-700">
+                  <Button className="d-flex justify-content-center align-items-center py-0 px-2 border-0 rounded shadow-none text-black hover:text-black focus:text-white bg-transparent hover:bg-gray-300 focus:bg-gray-700">
                     <EllipsisOutlined className="text-xl" />
                   </Button>
                 </Dropdown>
@@ -220,10 +214,7 @@ const Projects = () => {
                   <Typography.Text strong>Project name</Typography.Text>
                 </Col>
                 <Col span={14}>
-                  <Link
-                    to={`/projects/${item.id}/board`}
-                    className="text-blue-700 hover:text-blue-700 focus:text-blue-700"
-                  >
+                  <Link to={`/projects/${item.id}/board`}>
                     {item.projectName}
                   </Link>
                 </Col>
@@ -265,14 +256,10 @@ const Projects = () => {
                   <Typography.Text strong>Actions</Typography.Text>
                 </Col>
                 <Col span={14}>
-                  <Link
-                    to={`/projects/${item.id}/edit`}
-                    className="inline-flex h-8 w-8 justify-center items-center text-base text-blue-700 hover:text-blue-600 focus:text-blue-600 mr-2"
-                  >
+                  <Link to={`/projects/${item.id}/edit`}>
                     <EditOutlined />
                   </Link>
                   <Button
-                    className="bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
                     icon={<DeleteOutlined />}
                     onClick={showConfirmDeleteProjectModal(item)}
                   />
