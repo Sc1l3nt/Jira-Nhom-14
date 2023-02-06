@@ -15,7 +15,7 @@ const HomeTemplate = () => {
     return (
         <Layout style={{ minHeight: window.innerHeight }}>
             <Sider trigger={null} collapsible collapsed={collapsed} className='border border-3 border-primary rounded-end bg-white'>
-                <HomeSider />
+                <HomeSider collapsed={collapsed}/>
             </Sider>
             <Layout className="site-layout">
                 <Header className='bg-white p-0'>
