@@ -1,0 +1,12 @@
+@import '../../../index.scss';
+.header-mobile{
+    position: fixed;
+    width: 100%;
+    transform: translateY(-32%);
+    background: $white;
+    .logo{
+        .logo-render{
+            transform: translate(-50%, -15%);
+        }
+    }
+}

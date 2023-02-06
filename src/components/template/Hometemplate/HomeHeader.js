@@ -1,14 +1,24 @@
 import React from 'react'
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+} from '@ant-design/icons';
+import Search from '../Search/Search';
 
-const HomeHeader = () => {
+const HomeHeader = (props) => {
     return (
-        <div className='d-flex'>
-            <div>search</div>
-            <button className='userIcon btn'>
-                <div>
-                    a
+        <div className='header py-2 border border-primary border-3 rounded'>
+            <div className='d-flex justify-content-between align-items-center'>
+                <div className='btn' onClick={props.handleChangeCollapsed}>{props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</div>
+                <div className='d-flex'>
+                    <Search/>
+                    <button className='userIcon btn'>
+                        <div>
+                            profile
+                        </div>
+                    </button>
                 </div>
-            </button>
+            </div>
         </div>
     )
 }
