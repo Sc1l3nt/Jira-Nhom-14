@@ -17,6 +17,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
 import Users from "./pages/Users/Users";
+import Projects from "./pages/Projects/Projects";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -50,8 +51,8 @@ root.render(
         ></Route>
         <Route path="*" element={<PageNotFound />} />
         {/* PROJECT ROUTE  */}
-        {/* <Route path="projects" element={<Projects />} />
-        <Route path="projects/new" element={<ProjectNew />} />
+        <Route path="projects" element={<Projects />} />
+        {/* <Route path="projects/new" element={<ProjectNew />} />
         <Route path="projects/:id" element={<ProjectDetail />} />
         <Route path="projects/:id/edit" element={<ProjectEdit />} />
         <Route path="projects/:projectId/board" element={<Tasks />} /> */}
