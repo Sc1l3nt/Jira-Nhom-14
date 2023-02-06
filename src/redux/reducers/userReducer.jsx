@@ -87,9 +87,13 @@ export const registerApi = (userRegister) => {
 
 export const changeInfoApi = (userChangeInfo) => {
   return async (dispatch) => {
-    const result = await http.put("/Users/editUser", userChangeInfo);
-    const action = changeInfoAction(result.data.content);
-    dispatch(action);
+    try {
+      const result = await http.put("/Users/editUser", userChangeInfo);
+      const action = changeInfoAction(result.data.content);
+      dispatch(action);
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 

@@ -39,34 +39,16 @@ const EditUserModal = ({ visible, onCancel, user }) => {
     },
   });
 
-  const handleSubmit = () => {
-    formik.setTouched({
-      email: true,
-      name: true,
-      phoneNumber: true,
-      password: true,
-      passwordConfirmation: true,
+  const handleSubmit = async () => {
+    await dispatch(changeInfoApi(formik.values));
+    await dispatch(getAllUserApi());
+    Swal.fire({
+      title: "User updated successfully",
+      icon: "success",
+      confirmButtonText: "OK",
     });
-
-    if (!formik.dirty) return;
-
-    if (!formik.isValid) return;
-
-    dispatch(
-      changeInfoApi(formik.values, () => {
-        // BE store data hơi lâu nên phải setTimeout
-        setTimeout(() => {
-          dispatch(getAllUserApi());
-          Swal.fire({
-            title: "User updated successfully",
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-          formik.resetForm();
-          onCancel();
-        }, 400);
-      })
-    );
+    formik.resetForm();
+    onCancel();
   };
 
   const handleCancel = () => {
@@ -79,9 +61,8 @@ const EditUserModal = ({ visible, onCancel, user }) => {
       title={<Typography.Title level={5}>Edit User</Typography.Title>}
       open={visible}
       onCancel={onCancel}
-      maskStyle={{ zIndex: 1050 }}
-      maskClosable={false}
-      wrapClassName="z-modal"
+      //   maskClosable={false}
+      //   wrapClassName="z-modal"
       className="z-modal"
       footer={null}
       centered
@@ -203,6 +184,7 @@ const EditUserModal = ({ visible, onCancel, user }) => {
           <Button
             htmlType="submit"
             className="bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded mr-1"
+            type="primary"
           >
             Update
           </Button>
