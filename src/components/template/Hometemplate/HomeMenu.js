@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProjectOutlined, SettingOutlined } from '@ant-design/icons'
+import { ProjectOutlined, ProfileOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
 
 const HomeMenu = () => {
@@ -17,8 +17,8 @@ const HomeMenu = () => {
                 },
                 {
                     key: '2',
-                    icon: <SettingOutlined className='fs-5' />,
-                    label: 'Project Settings',
+                    icon: <ProfileOutlined className='fs-5' />,
+                    label: (<a href='profile'>Update Profile</a>),
                 },
             ]}
         />

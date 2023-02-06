@@ -21,7 +21,7 @@ const HomeTemplate = () => {
                 <Header className='bg-white p-0'>
                     <HomeHeader handleChangeCollapsed={handleChangeCollapsed} collapsed={collapsed} />
                 </Header>
-                <Content className='bg-white'>
+                <Content className='bg-white border border-primary border-3 rounded mt-2 ms-2'>
                     Content
                 </Content>
             </Layout>

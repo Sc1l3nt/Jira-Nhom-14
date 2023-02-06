@@ -35,6 +35,10 @@ $fs-7: $size * .75;
     box-sizing: border-box;
 }
 
+a{
+    text-decoration: none;
+}
+
 .bg-white{
     background-color: $white;
 }
