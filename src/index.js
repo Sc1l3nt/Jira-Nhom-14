@@ -21,6 +21,7 @@ import Projects from "./pages/Projects/Projects";
 import './index.scss'
 import LoginTemplate from "./templates/LoginTemplate/LoginTemplate";
 import LoginTemplateMobile from "./templates/LoginTemplate/LoginTemplateMobile";
+import Test from "./components/Test";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -28,6 +29,7 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
+        <Route index element={<Test/>}/>
         <Route
           path="/"
           element={

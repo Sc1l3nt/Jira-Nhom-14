@@ -1,0 +1,14 @@
+@import '../../../index.scss';
+
+.create{
+    .title{
+        margin-left: 5px;
+    }
+    .icon{
+        transform: translateY(-2px);
+    }
+    .text{
+        opacity: 0.5;
+        font-size: $fs-7;
+    }
+}

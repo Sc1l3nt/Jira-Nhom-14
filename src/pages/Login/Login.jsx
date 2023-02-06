@@ -58,7 +58,7 @@ const Login = () => {
       style={{ height: "auto", width: "auto" }}
     >
       <div className="flex flex-col justify-center items-center min-h-screen ">
-        <h3 className="text-center" style={{ fontWeight: 300, fontSize: 35 }}>
+        <h3 className="text-center" style={{ fontWeight: 500, fontSize: '2rem' }}>
           {" "}
           Login
         </h3>

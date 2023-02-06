@@ -70,7 +70,7 @@ const Register = () => {
       onSubmit={handleRegister}
       className="container"
     >
-      <h3 className="text-center" style={{ fontWeight: 300, fontSize: 35 }}>
+      <h3 className="text-center" style={{ fontWeight: 500, fontSize: '2rem' }}>
         {" "}
         Register CyberBugs
       </h3>
@@ -179,7 +179,7 @@ const Register = () => {
           color: "#fff",
           borderRadius: 5,
         }}
-        className="mt-5"
+        className="mt-5 w-100"
       >
         Register
       </Button>

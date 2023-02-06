@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Layout } from 'antd';
 import HomeSider from '../../components/template/Hometemplate/HomeSider';
 import HomeHeader from '../../components/template/Hometemplate/HomeHeader';
+import CreateIssue from '../../components/template/CreateIssue/CreateIssue';
 
 const { Header, Sider, Content } = Layout;
 
@@ -24,6 +25,7 @@ const HomeTemplate = () => {
                     Content
                 </Content>
             </Layout>
+            <CreateIssue/>
         </Layout>
     );
 };
