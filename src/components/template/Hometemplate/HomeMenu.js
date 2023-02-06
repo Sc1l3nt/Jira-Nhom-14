@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProjectOutlined, ProfileOutlined } from '@ant-design/icons'
+import { ProjectOutlined, SettingOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
 
 const HomeMenu = () => {
@@ -13,12 +13,12 @@ const HomeMenu = () => {
                 {
                     key: '1',
                     icon: <ProjectOutlined className='fs-5' />,
-                    label: 'Kanban Board',
+                    label: (<a href='index'>Kanban Board</a>),
                 },
                 {
                     key: '2',
-                    icon: <ProfileOutlined className='fs-5' />,
-                    label: (<a href='profile'>Update Profile</a>),
+                    icon: <SettingOutlined className='fs-5' />,
+                    label: (<a href='setting'>Project Setting</a>),
                 },
             ]}
         />

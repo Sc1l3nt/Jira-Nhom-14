@@ -4,6 +4,7 @@ import {
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import Search from '../Search/Search';
+import AccountDropDown from '../../AccountDropDown/AccountDropDown';
 
 const HomeHeader = (props) => {
     return (
@@ -12,11 +13,7 @@ const HomeHeader = (props) => {
                 <div className='btn' onClick={props.handleChangeCollapsed}>{props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</div>
                 <div className='d-flex'>
                     <Search/>
-                    <button className='userIcon btn'>
-                        <div>
-                            profile
-                        </div>
-                    </button>
+                    <AccountDropDown />
                 </div>
             </div>
         </div>
