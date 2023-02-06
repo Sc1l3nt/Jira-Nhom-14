@@ -9,15 +9,7 @@ import {
 } from "../../../redux/reducers/projectReducer";
 import Swal from "sweetalert2";
 import AddMemberModal from "../../../components/AddMemberModal/AddMemberModal";
-import {
-  Breadcrumb,
-  Button,
-  Form,
-  Input,
-  Modal,
-  Select,
-  Typography,
-} from "antd";
+import { Breadcrumb, Button, Form, Input, Select, Typography } from "antd";
 import { Link } from "react-router-dom";
 import TinyMCEEditor from "../../../components/TinyMCEEditor/TinyMCEEditor";
 
@@ -58,19 +50,18 @@ const ProjectNew = () => {
     }
   }, [projectError]);
 
-  const handleSubmit = async () => {
-    try {
-      await dispatch(createProjectAuthorizeApi(formik.values));
-      Swal.fire({
-        title: "Project was created successfully!",
-        icon: "success",
-        confirmButtonText: "OK",
-      });
-      formik.resetForm();
-      setShowAddMembersModal(true);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSubmit = () => {
+    dispatch(
+      createProjectAuthorizeApi(formik.values, () => {
+        formik.resetForm();
+        setShowAddMembersModal(true);
+      })
+    );
+    // Swal.fire({
+    //   title: "Project was created successfully!",
+    //   icon: "success",
+    //   confirmButtonText: "OK",
+    // });
   };
 
   const handleCancel = () => {
