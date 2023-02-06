@@ -7,7 +7,6 @@ import {
   getAllProjectCategoryApi,
   setProjectDetailNullAction,
 } from "../../../redux/reducers/projectReducer";
-import Swal from "sweetalert2";
 import AddMemberModal from "../../../components/AddMemberModal/AddMemberModal";
 import { Breadcrumb, Button, Form, Input, Select, Typography } from "antd";
 import { Link } from "react-router-dom";
@@ -48,6 +47,7 @@ const ProjectNew = () => {
         ...formik.errors,
       });
     }
+    // eslint-disable-next-line
   }, [projectError]);
 
   const handleSubmit = () => {

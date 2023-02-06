@@ -125,7 +125,9 @@ export const createProjectAuthorizeApi = (project, callback) => {
     const result = await http.post(`/Project/createProjectAuthorize`, project);
     const action = createProjectAuthorizeAction(result.data.content);
     dispatch(action);
-    if (callback) callback();
+    if (callback) {
+      callback();
+    }
   };
 };
 
@@ -149,11 +151,12 @@ export const updateProjectApi = (projectUpdate) => {
   };
 };
 
-export const assignUserToProjectApi = (addUser) => {
+export const assignUserToProjectApi = (addUser, callback) => {
   return async (dispatch) => {
     const result = await http.post(`/Project/assignUserProject`, addUser);
     const action = assignUserToProjectAction(result.data.content);
     dispatch(action);
+    if (callback) callback();
   };
 };
 
@@ -179,14 +182,12 @@ export const removeUserFromTaskApi = ({ taskId, userId }) => {
   };
 };
 
-export const removeUserFromProjectApi = ({ projectId, userId }) => {
+export const removeUserFromProjectApi = (data, callback) => {
   return async (dispatch) => {
-    const result = await http.post("/Project/removeUserFromProject", {
-      projectId,
-      userId,
-    });
+    const result = await http.post("/Project/removeUserFromProject", data);
     const action = removeUserFromProjectAction(result.data.content);
     dispatch(action);
+    if (callback) callback();
   };
 };
 
