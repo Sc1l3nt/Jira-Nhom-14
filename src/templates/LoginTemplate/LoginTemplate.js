@@ -17,7 +17,7 @@ const LoginTemplate = () => {
                     <h5 className='text-name position-absolute'>Author: Trương Văn Đại & Trần Minh Bảo</h5>
                 </Sider>
                 <Content className='d-flex justify-content-center align-items-center'>
-                    <div className="border rounded border-primary border-3 bg-white px-5 py-3">
+                    <div className="border rounded border-primary border-3 bg-white px-5 py-4">
                         <Outlet />
                     </div>
                 </Content>
