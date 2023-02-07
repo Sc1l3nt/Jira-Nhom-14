@@ -180,8 +180,12 @@ const ProjectEdit = () => {
         </Form.Item>
 
         <div className="d-flex align-items-center">
-          <Link to="/projects">Cancel</Link>
-          <Button htmlType="submit">Update</Button>
+          <Button className="me-3">
+            <Link to="/projects">Cancel</Link>
+          </Button>
+          <Button htmlType="submit" type="primary">
+            Update
+          </Button>
         </div>
       </Form>
     </div>
