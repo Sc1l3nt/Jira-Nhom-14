@@ -16,63 +16,44 @@ const commentReducer = createSlice({
     getAllCommentsAction: (state, action) => {
       state.commentList = action.payload;
     },
-    insertCommentAction: (state, action) => {
-      state.commentList.push(action.payload);
-    },
-    updateCommentAction: (state, action) => {
-      state.commentList = action.payload;
-    },
-    deleteCommentAction: (state, action) => {
-      state.commentList = action.payload;
-    },
   },
 });
 
 export const {
   setCommentErrorAction,
   getAllCommentsAction,
-  insertCommentAction,
-  updateCommentAction,
-  deleteCommentAction,
 } = commentReducer.actions;
 
 export default commentReducer.reducer;
 
-export const getAllCommentsApi = (params) => {
+export const getAllCommentsApi = (params, callback) => {
   return async (dispatch) => {
     const result = await http.get("/Comment/getAll", { params });
     const action = getAllCommentsAction(result.data.content);
     dispatch(action);
+    if (callback) callback();
   };
 };
 
-export const insertCommentApi = ({ taskId, contentComment }) => {
+export const insertCommentApi = (insertedData, callback) => {
   return async (dispatch) => {
-    const result = await http.post("/Comment/insertComment", {
-      taskId,
-      contentComment,
-    });
-    const action = insertCommentAction(result.data.content);
-    dispatch(action);
+    await http.post("/Comment/insertComment", insertedData);
+    if (callback) callback();
   };
 };
 
-export const updateCommentApi = ({ id, contentComment }) => {
+export const updateCommentApi = ({ id, contentComment }, callback) => {
   return async (dispatch) => {
-    const result = await http.put(
+    await http.put(
       `/Comment/updateComment?id=${id}&contentComment=${contentComment}`
     );
-    const action = updateCommentAction(result.data.content);
-    dispatch(action);
+    if (callback) callback();
   };
 };
 
-export const deleteCommentApi = (idComment) => {
+export const deleteCommentApi = (idComment, callback) => {
   return async (dispatch) => {
-    const result = await http.delete(
-      `/Comment/deleteComment?idComment=${idComment}`
-    );
-    const action = deleteCommentAction(result.data.content);
-    dispatch(action);
+    await http.delete(`/Comment/deleteComment?idComment=${idComment}`);
+    if (callback) callback();
   };
 };
