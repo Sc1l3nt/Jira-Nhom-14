@@ -12,7 +12,6 @@ import {
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
 import { history } from "../../index";
 import {
   assignUserToProjectApi,
@@ -32,6 +31,7 @@ const AddMemberModal = (props) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const usersRef = useRef(null);
   const searchRef = useRef(null);
+  const projectId = props.project.id;
 
   useEffect(() => {
     //dispatch(getUsersByProjectIdApi(props.project.id));
@@ -65,10 +65,6 @@ const AddMemberModal = (props) => {
         title: projectError,
         content: "You are not the owner of this project",
         okText: "OK",
-        okButtonProps: {
-          className:
-            "bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded",
-        },
         zIndex: 1050,
         style: { top: 80 },
         maskClosable: true,
@@ -80,7 +76,7 @@ const AddMemberModal = (props) => {
   }, [projectError, dispatch]);
 
   const addMemberToProject = (userId) => () => {
-    const data = { projectId: props.project.id, userId };
+    const data = { projectId, userId };
     console.log(data);
     dispatch(
       assignUserToProjectApi(data, () => {
@@ -93,7 +89,7 @@ const AddMemberModal = (props) => {
   };
 
   const removeMemberFromProject = (userId) => () => {
-    const data = { projectId: props.project.id, userId };
+    const data = { projectId, userId };
     console.log(data);
     dispatch(
       removeUserFromProjectApi(data, () => {

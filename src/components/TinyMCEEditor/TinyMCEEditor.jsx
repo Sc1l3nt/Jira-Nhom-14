@@ -38,6 +38,9 @@ const TinyMCEEditor = ({ name, value, onEditorChange }) => {
         value={value}
         onEditorChange={onEditorChange}
         onInit={handleOnInit}
+        style={{
+          height: "10vh !important",
+        }}
       />
     </>
   );
