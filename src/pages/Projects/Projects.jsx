@@ -165,10 +165,11 @@ const Projects = () => {
                     onClick={() => {
                       history.push(`/projects/${record.id}/edit`);
                     }}
+                    style={{ fontSize: "20px", color: "#1677ff" }}
                   />
 
                   <DeleteOutlined
-                    style={{ color: "red" }}
+                    style={{ fontSize: "20px", color: "red" }}
                     onClick={showConfirmDeleteProjectModal(record)}
                   />
                 </Space>

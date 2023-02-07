@@ -153,10 +153,17 @@ export const updateProjectApi = (projectUpdate) => {
 
 export const assignUserToProjectApi = (addUser, callback) => {
   return async (dispatch) => {
-    const result = await http.post(`/Project/assignUserProject`, addUser);
-    const action = assignUserToProjectAction(result.data.content);
-    dispatch(action);
-    if (callback) callback();
+    try {
+      const result = await http.post(`/Project/assignUserProject`, addUser);
+      const action = assignUserToProjectAction(result.data.content);
+      dispatch(action);
+      if (callback) callback();
+    } catch (error) {
+      console.log(error);
+      if (error.response.data.statusCode === 403) {
+        dispatch(setProjectErrorNullAction(error.response.data.content));
+      }
+    }
   };
 };
 
@@ -184,10 +191,18 @@ export const removeUserFromTaskApi = ({ taskId, userId }) => {
 
 export const removeUserFromProjectApi = (data, callback) => {
   return async (dispatch) => {
-    const result = await http.post("/Project/removeUserFromProject", data);
-    const action = removeUserFromProjectAction(result.data.content);
-    dispatch(action);
-    if (callback) callback();
+    dispatch(setProjectErrorNullAction(null));
+    try {
+      const result = await http.post("/Project/removeUserFromProject", data);
+      const action = removeUserFromProjectAction(result.data.content);
+      dispatch(action);
+      if (callback) callback();
+    } catch (error) {
+      console.log(error);
+      if (error.response.data.statusCode === 403) {
+        dispatch(setProjectErrorNullAction(error.response.data.content));
+      }
+    }
   };
 };
 
@@ -200,7 +215,8 @@ export const getUsersByProjectIdApi = (projectId) => {
       const action = getUsersByProjectIdAction(result.data.content);
       dispatch(action);
     } catch (error) {
-      console.log(error);
+      const action = getUsersByProjectIdAction(null);
+      dispatch(action);
     }
   };
 };
