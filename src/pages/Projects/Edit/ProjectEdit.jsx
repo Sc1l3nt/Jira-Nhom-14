@@ -50,6 +50,7 @@ const ProjectEdit = () => {
       creator: projectDetail?.creator.id,
       categoryId: projectDetail?.projectCategory.id,
     });
+    // eslint-disable-next-line
   }, [projectDetail]);
 
   const handleUpdateProject = () => {

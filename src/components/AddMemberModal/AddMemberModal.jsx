@@ -10,7 +10,7 @@ import {
   Typography,
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../index";
 import {
@@ -23,6 +23,10 @@ import { getAllUserApi } from "../../redux/reducers/userReducer";
 
 const AddMemberModal = (props) => {
   const { showFooter = true } = props;
+  //const [projectId, setProjectId] = useState(props.project.id);
+  const projectIdValueMemo = props.project.id;
+  const projectId = useMemo(() => projectIdValueMemo, []);
+
   const dispatch = useDispatch();
   const { projectMembers, projectError } = useSelector(
     (state) => state.projectReducer
@@ -31,12 +35,14 @@ const AddMemberModal = (props) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const usersRef = useRef(null);
   const searchRef = useRef(null);
-  const projectId = props.project.id;
+
+  console.log("render: ", projectId);
 
   useEffect(() => {
-    //dispatch(getUsersByProjectIdApi(props.project.id));
+    //dispatch(getUsersByProjectIdApi(projectId));
     dispatch(getAllUserApi());
-  }, [dispatch, props.project.id]);
+    // eslint-disable-next-line
+  }, [dispatch, projectId]);
 
   useEffect(() => {
     const clonedUsers = [...userList];
@@ -93,7 +99,7 @@ const AddMemberModal = (props) => {
     console.log(data);
     dispatch(
       removeUserFromProjectApi(data, () => {
-        dispatch(getUsersByProjectIdApi(props.project.id));
+        dispatch(getUsersByProjectIdApi(projectId));
         if (props.onFetchProject) {
           props.onFetchProject();
         }
@@ -173,7 +179,7 @@ const AddMemberModal = (props) => {
               <Form.Item
                 label={<Typography.Text strong>Search users</Typography.Text>}
                 colon={false}
-                className="pl-6 pr-6"
+                className="ps-6 pe-6"
                 labelCol={{ span: 6 }}
                 labelAlign="left"
               >
@@ -261,4 +267,4 @@ const AddMemberModal = (props) => {
   );
 };
 
-export default AddMemberModal;
+export default memo(AddMemberModal);

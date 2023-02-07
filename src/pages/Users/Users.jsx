@@ -158,11 +158,7 @@ const Users = () => {
       render: (text, record, index) => (
         <Space size="small">
           {/* edit button */}
-          <Button
-            className="bg-transparent hover:bg-transparent focus:bg-transparent text-blue-700 hover:text-blue-500 focus:text-blue-500 border-0 shadow-none"
-            icon={<EditOutlined />}
-            onClick={handleEditUser(record)}
-          />
+          <Button icon={<EditOutlined />} onClick={handleEditUser(record)} />
 
           {/* delete button*/}
           <Popconfirm
@@ -173,10 +169,7 @@ const Users = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button
-              className="bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
-              icon={<DeleteOutlined />}
-            />
+            <Button icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
       ),
