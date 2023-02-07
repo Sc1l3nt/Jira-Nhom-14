@@ -25,7 +25,7 @@ const AddMemberModal = (props) => {
   const { showFooter = true } = props;
   //const [projectId, setProjectId] = useState(props.project.id);
   const projectIdValueMemo = props.project.id;
-  const projectId = useMemo(() => projectIdValueMemo, [projectIdValueMemo]);
+  const projectId = useMemo(() => projectIdValueMemo, []);
 
   const dispatch = useDispatch();
   const { projectMembers, projectError } = useSelector(
@@ -39,10 +39,10 @@ const AddMemberModal = (props) => {
   console.log("render: ", projectId);
 
   useEffect(() => {
-    //dispatch(getUsersByProjectIdApi(props.project.id));
+    //dispatch(getUsersByProjectIdApi(projectId));
     dispatch(getAllUserApi());
     // eslint-disable-next-line
-  }, []);
+  }, [dispatch, projectId]);
 
   useEffect(() => {
     const clonedUsers = [...userList];
@@ -99,7 +99,7 @@ const AddMemberModal = (props) => {
     console.log(data);
     dispatch(
       removeUserFromProjectApi(data, () => {
-        dispatch(getUsersByProjectIdApi(props.project.id));
+        dispatch(getUsersByProjectIdApi(projectId));
         if (props.onFetchProject) {
           props.onFetchProject();
         }
