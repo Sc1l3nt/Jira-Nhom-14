@@ -39,87 +39,101 @@ export const getAllTaskTypesApi = () => {
   };
 };
 
-export const updateTaskStatusApi = ({ taskId, statusId }) => {
+export const updateTaskStatusApi = ({ taskId, statusId }, callback) => {
   return async (dispatch) => {
     await http.put(`/Project/updateStatus`, {
       taskId,
       statusId,
     });
+    if (callback) callback();
   };
 };
 
-export const getTaskDetailApi = (taskId) => {};
+export const getTaskDetailApi = (taskId, callback) => {
+  return async (dispatch) => {
+    const result = await http.get(`/Project/getTaskDetail`, taskId);
+    const action = getTaskDetailAction(result.data.content);
+    dispatch(action);
+    if (callback) callback();
+  };
+};
 
-export const createTaskApi = (data) => {
+export const createTaskApi = (data, callback) => {
   return async (dispatch) => {
     await http.post(`/Project/createTask`, data);
+    if (callback) callback();
   };
 };
 
-export const updateTaskApi = (data) => {
+export const updateTaskApi = (data, callback) => {
   return async (dispatch) => {
     await http.post(`/Project/updateTask`, data);
+    if (callback) callback();
   };
 };
 
-export const updateDescriptionApi = ({ taskId, description }) => {
+export const updateDescriptionApi = ({ taskId, description }, callback) => {
   return async (dispatch) => {
     await http.put(`/Project/updateDescription`, {
       taskId,
       description,
     });
+    if (callback) callback();
   };
 };
 
-export const updatePriorityApi = ({ taskId, priorityId }) => {
+export const updatePriorityApi = ({ taskId, priorityId }, callback) => {
   return async (dispatch) => {
     await http.put(`/Project/updateStatus`, {
       taskId,
       priorityId,
     });
+    if (callback) callback();
   };
 };
 
-export const assignUserToTaskApi = ({ taskId, userId }) => {
+export const assignUserToTaskApi = ({ taskId, userId }, callback) => {
   return async (dispatch) => {
     await http.post(`/Project/assignUserTask`, {
       taskId,
       userId,
     });
+    if (callback) callback();
   };
 };
 
-export const removeUserFromTaskApi = ({ taskId, userId }) => {
+export const removeUserFromTaskApi = ({ taskId, userId }, callback) => {
   return async (dispatch) => {
     try {
       await http.post(`/Project/removeUserFromTask`, {
         taskId,
         userId,
       });
+      if (callback) callback();
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const updateEstimateApi = ({ taskId, originalEstimate }) => {
+export const updateEstimateApi = ({ taskId, originalEstimate }, callback) => {
   return async (dispatch) => {
     try {
       await http.put(`/Project/updateEstimate`, {
         taskId,
         originalEstimate,
       });
+      if (callback) callback();
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const updateTimeTrackingApi = ({
-  taskId,
-  timeTrackingSpent,
-  timeTrackingRemaining,
-}) => {
+export const updateTimeTrackingApi = (
+  { taskId, timeTrackingSpent, timeTrackingRemaining },
+  callback
+) => {
   return async (dispatch) => {
     try {
       await http.put(`/Project/updateTimeTracking`, {
@@ -127,16 +141,18 @@ export const updateTimeTrackingApi = ({
         timeTrackingSpent,
         timeTrackingRemaining,
       });
+      if (callback) callback();
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const removeTaskApi = (taskId) => {
+export const removeTaskApi = (taskId, callback) => {
   return async (dispatch) => {
     try {
       await http.delete(`/Project/removeTask?taskId=${taskId}`);
+      if (callback) callback();
     } catch (error) {
       console.log(error);
     }

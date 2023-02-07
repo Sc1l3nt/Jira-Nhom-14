@@ -16,6 +16,7 @@
     "lodash": "^4.17.21",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.2",
