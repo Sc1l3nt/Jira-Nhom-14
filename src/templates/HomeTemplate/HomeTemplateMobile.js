@@ -10,12 +10,14 @@ const HomeTemplateMobile = () => {
     return (
         <Space direction="vertical" style={{ maxHeight: window.innerHeight, width: '100%' }} size={[0, 48]}>
             <Header><HomeHeaderMobile /></Header>
-            <Layout>
+            <Layout className='bg-gif'>
                 <Content style={{ minHeight: window.innerHeight }}>
-                    <Outlet />
+                    <div className='mt-3'>
+                        <Outlet />
+                    </div>
                 </Content>
             </Layout>
-            <CreateIssue/>
+            <CreateIssue />
         </Space>
     )
 }

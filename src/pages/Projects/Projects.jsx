@@ -29,10 +29,10 @@ import {
 } from "../../redux/reducers/projectReducer";
 
 const Projects = () => {
-  const dispatch = useDispatch();
   const tableIsBreak = useMediaQuery({ maxWidth: 624 });
   const debounceSearchRef = useRef(null);
   const { projectList } = useSelector((state) => state.projectReducer);
+  const dispatch = useDispatch();
 
   const dataSource = projectList.map((project) => {
     return { ...project, key: project.id };
@@ -73,8 +73,8 @@ const Projects = () => {
     };
   };
 
-  const handleDeleteProject = async (projectId) => {
-    await dispatch(deleteProjectApi(projectId));
+  const handleDeleteProject = (projectId) => {
+    dispatch(deleteProjectApi(projectId));
     showProjectDeletedSuccessfullyModal();
   };
 
@@ -88,26 +88,17 @@ const Projects = () => {
   };
 
   return (
-    <>
-      <div className="mb-3 flex items-start">
-        <Typography.Title level={3} className="flex-grow">
+    <div className="container p-4">
+      <div className="mb-3 d-flex justify-content-between align-item-center">
+        <Typography.Title level={3} className="flex-grow me-5">
           Projects
         </Typography.Title>
-        <Link
-          to="/projects/new"
-          className="flex justify-center items-center h-8 bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white hover:text-white font-medium py-1.5 px-3 rounded cursor-pointer"
-        >
-          Create project
-        </Link>
-      </div>
-
-      <div>
-        <Input
-          allowClear
-          suffix={<SearchOutlined />}
-          className="mb-6 w-48 rounded"
-          onChange={handleSearch}
-        />
+          <Input
+            allowClear
+            suffix={<SearchOutlined />}
+            className="w-25"
+            onChange={handleSearch}
+          />
       </div>
 
       {!tableIsBreak && (
@@ -123,12 +114,7 @@ const Projects = () => {
             dataIndex="projectName"
             key="projectName"
             render={(projectName, record) => (
-              <Link
-                to={`/projects/${record.id}/board`}
-                className="text-blue-700 hover:text-blue-700 focus:text-blue-700"
-              >
-                {projectName}
-              </Link>
+              <Link to={`/projects/${record.id}/board`}>{projectName}</Link>
             )}
             sorter={(a, b) => a.projectName.localeCompare(b.projectName)}
           />
@@ -193,7 +179,7 @@ const Projects = () => {
                   overlay={menu}
                   trigger={["click"]}
                 >
-                  <Button className="flex justify-center items-center py-0 px-2 border-0 rounded shadow-none text-black hover:text-black focus:text-white bg-transparent hover:bg-gray-300 focus:bg-gray-700">
+                  <Button className="d-flex justify-content-center align-items-center py-0 px-2 border-0 rounded shadow-none text-black hover:text-black focus:text-white bg-transparent hover:bg-gray-300 focus:bg-gray-700">
                     <EllipsisOutlined className="text-xl" />
                   </Button>
                 </Dropdown>
@@ -221,10 +207,7 @@ const Projects = () => {
                   <Typography.Text strong>Project name</Typography.Text>
                 </Col>
                 <Col span={14}>
-                  <Link
-                    to={`/projects/${item.id}/board`}
-                    className="text-blue-700 hover:text-blue-700 focus:text-blue-700"
-                  >
+                  <Link to={`/projects/${item.id}/board`}>
                     {item.projectName}
                   </Link>
                 </Col>
@@ -266,14 +249,10 @@ const Projects = () => {
                   <Typography.Text strong>Actions</Typography.Text>
                 </Col>
                 <Col span={14}>
-                  <Link
-                    to={`/projects/${item.id}/edit`}
-                    className="inline-flex h-8 w-8 justify-center items-center text-base text-blue-700 hover:text-blue-600 focus:text-blue-600 mr-2"
-                  >
+                  <Link to={`/projects/${item.id}/edit`}>
                     <EditOutlined />
                   </Link>
                   <Button
-                    className="bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
                     icon={<DeleteOutlined />}
                     onClick={showConfirmDeleteProjectModal(item)}
                   />
@@ -283,7 +262,7 @@ const Projects = () => {
           )}
         />
       )}
-    </>
+    </div>
   );
 };
 

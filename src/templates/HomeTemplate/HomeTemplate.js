@@ -18,7 +18,7 @@ const HomeTemplate = () => {
             <Sider trigger={null} collapsible collapsed={collapsed} className='border border-3 border-primary rounded-end bg-white'>
                 <HomeSider collapsed={collapsed}/>
             </Sider>
-            <Layout className="site-layout">
+            <Layout className="site-layout ms-1">
                 <Header className='bg-white p-0'>
                     <HomeHeader handleChangeCollapsed={handleChangeCollapsed} collapsed={collapsed} />
                 </Header>

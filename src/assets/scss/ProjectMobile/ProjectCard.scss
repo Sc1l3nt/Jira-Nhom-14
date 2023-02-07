@@ -1,0 +1,61 @@
+@import '../../../index.scss';
+
+.cardProject {
+    .card-antd {
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 10px 2px #000000;
+        box-shadow: 0px 0px 10px 2px #000000;
+
+        .backGround {
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 80%;
+            opacity: 1;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000000;
+                opacity: .6;
+            }
+
+            &.web {
+                background-image: url('../../img/images.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+
+            &.software {
+                background-image: url('../../img/software-development-business-process-automation-internet-technology-concept-virtual-screen-software-development-143587196.jpg');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+
+            &.mobile {
+                background-image: url('../../img/mobi.jpg');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 90;
+            color: $white;
+
+            .creator {
+                overflow: hidden;
+            }
+        }
+    }
+}

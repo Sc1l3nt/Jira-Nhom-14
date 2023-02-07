@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../../assets/scss/template/HomeHeaderMobile.scss'
 import HomeSiderMobile from './HomeSiderMobile'
+import AccountDropDown from '../../AccountDropDown/AccountDropDown'
 
 const HomeHeaderMobile = () => {
     return (
@@ -15,7 +16,7 @@ const HomeHeaderMobile = () => {
                             </div>
                         </div>
                     </div>
-                    <div>profile</div>
+                    <AccountDropDown/>
                 </div>
             </div>
         </div>
