@@ -44,16 +44,30 @@ export const insertCommentApi = (insertedData, callback) => {
 
 export const updateCommentApi = ({ id, contentComment }, callback) => {
   return async (dispatch) => {
-    await http.put(
-      `/Comment/updateComment?id=${id}&contentComment=${contentComment}`
-    );
-    if (callback) callback();
+    dispatch(setCommentErrorAction(null));
+    try {
+      await http.put(
+        `/Comment/updateComment?id=${id}&contentComment=${contentComment}`
+      );
+      if (callback) callback();
+    } catch (error) {
+      if (error.response.data.statusCode === 403) {
+        dispatch(setCommentErrorAction(error.response.data.content));
+      }
+    }
   };
 };
 
 export const deleteCommentApi = (idComment, callback) => {
   return async (dispatch) => {
-    await http.delete(`/Comment/deleteComment?idComment=${idComment}`);
-    if (callback) callback();
+    dispatch(setCommentErrorAction(null));
+    try {
+      await http.delete(`/Comment/deleteComment?idComment=${idComment}`);
+      if (callback) callback();
+    } catch (error) {
+      if (error.response.data.statusCode === 403) {
+        dispatch(setCommentErrorAction(error.response.data.content));
+      }
+    }
   };
 };
