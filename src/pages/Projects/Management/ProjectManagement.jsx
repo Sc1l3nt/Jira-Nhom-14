@@ -30,12 +30,11 @@ import {
   updateTaskStatusApi,
 } from "../../../redux/reducers/taskReducer";
 import PageNotFound from "../../PageNotFound/PageNotFound";
-import Bug from "../../../assets/icon/bug-icon.png";
-import NewTask from "../../../assets/icon/new-task.png";
 
 const ProjectManagement = () => {
   const params = useParams();
-  const projectId = parseInt(params.id);
+  const projectId = parseInt(params.projectId);
+  console.log(params);
   const dispatch = useDispatch();
   const { projectDetail, projectError } = useSelector(
     (state) => state.projectReducer
