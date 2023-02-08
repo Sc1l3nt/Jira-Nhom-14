@@ -41,16 +41,10 @@ const projectReducer = createSlice({
     updateProjectAction: (state, action) => {
       state.projectDetail = action.payload;
     },
-    assignUserToProjectAction: (state, action) => {
-      state.projectDetail = action.payload;
-    },
     assignUserTaskAction: (state, action) => {
       state.projectDetail = action.payload;
     },
     removeUserFromTaskAction: (state, action) => {
-      state.projectDetail = action.payload;
-    },
-    removeUserFromProjectAction: (state, action) => {
       state.projectDetail = action.payload;
     },
     setProjectDetailNullAction: (state, action) => {
@@ -60,7 +54,7 @@ const projectReducer = createSlice({
       state.projectError = action.payload;
     },
     getUsersByProjectIdAction: (state, action) => {
-      state.projectMembers.push(action.payload);
+      state.projectMembers = action.payload;
     },
   },
 });
@@ -74,10 +68,8 @@ export const {
   createProjectAuthorizeAction,
   getProjectDetailAction,
   updateProjectAction,
-  assignUserToProjectAction,
   assignUserTaskAction,
   removeUserFromTaskAction,
-  removeUserFromProjectAction,
   setProjectDetailNullAction,
   setProjectErrorNullAction,
   getUsersByProjectIdAction,
@@ -153,21 +145,24 @@ export const updateProjectApi = (projectUpdate) => {
 
 export const assignUserToProjectApi = (addUser, callback) => {
   return async (dispatch) => {
-    const result = await http.post(`/Project/assignUserProject`, addUser);
-    const action = assignUserToProjectAction(result.data.content);
-    dispatch(action);
-    if (callback) callback();
+    try {
+      http.post(`/Project/assignUserProject`, addUser);
+      if (callback) callback();
+    } catch (error) {
+      console.log(error);
+      if (error.response.data.statusCode === 403) {
+        dispatch(setProjectErrorNullAction(error.response.data.content));
+      }
+    }
   };
 };
 
 export const assignUserTaskApi = ({ taskId, userId }) => {
   return async (dispatch) => {
-    const result = await http.post(`/Project/assignUserTask`, {
+    await http.post(`/Project/assignUserTask`, {
       taskId,
       userId,
     });
-    const action = assignUserToProjectAction(result.data.content);
-    dispatch(action);
   };
 };
 
@@ -184,10 +179,16 @@ export const removeUserFromTaskApi = ({ taskId, userId }) => {
 
 export const removeUserFromProjectApi = (data, callback) => {
   return async (dispatch) => {
-    const result = await http.post("/Project/removeUserFromProject", data);
-    const action = removeUserFromProjectAction(result.data.content);
-    dispatch(action);
-    if (callback) callback();
+    dispatch(setProjectErrorNullAction(null));
+    try {
+      await http.post("/Project/removeUserFromProject", data);
+      if (callback) callback();
+    } catch (error) {
+      console.log(error);
+      if (error.response.data.statusCode === 403) {
+        dispatch(setProjectErrorNullAction(error.response.data.content));
+      }
+    }
   };
 };
 
@@ -197,10 +198,12 @@ export const getUsersByProjectIdApi = (projectId) => {
       const result = await http.get(
         `/Users/getUserByProjectId?idProject=${projectId}`
       );
+      console.log(result.data.content);
       const action = getUsersByProjectIdAction(result.data.content);
       dispatch(action);
     } catch (error) {
-      console.log(error);
+      const action = getUsersByProjectIdAction(null);
+      dispatch(action);
     }
   };
 };

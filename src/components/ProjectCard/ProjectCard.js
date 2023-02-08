@@ -1,11 +1,12 @@
 import { Avatar, Card, Tooltip } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { DeleteOutlined, SettingOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import '../../assets/scss/ProjectMobile/ProjectCard.scss'
+import { Link } from 'react-router-dom'
 
 const ProjectCard = (props) => {
     const [className, setClassName] = useState('')
-    const { project, handleCard } = props
+    const { project, handleCard, showConfirmDeleteProjectModal } = props
 
     useEffect(() => {
         switch (project.categoryName) {
@@ -26,17 +27,19 @@ const ProjectCard = (props) => {
                 break;
             }
         }
-    }, [])
+    }, [project.categoryName])
 
     return (
-        <div className='cardProject'>
+        <div className='cardProject pt-3'>
             <Card
-            bordered={false}
+                bordered={false}
                 className='position-relative card-antd'
                 style={{ width: 300, marginTop: 16 }}
                 actions={[
-                    <SettingOutlined key="setting" />,
-                    <DeleteOutlined key='delete' />
+                    <Link to={`/projects/${project.id}/edit`}>
+                        <EditOutlined className='fs-4' />
+                    </Link>,
+                    <DeleteOutlined className='fs-4' onClick={showConfirmDeleteProjectModal(project)}/>,
                 ]}
             >
                 <div className={`backGround ${className}`} />
@@ -57,7 +60,7 @@ const ProjectCard = (props) => {
                                     </Tooltip>
                                 ))}
                             </Avatar.Group>
-                            <h6 className='creator ms-3'>Creator:<br/>{project.creator.name.length < 25 ? project.creator.name : project.creator.name.substring(0, 25) + '...'}</h6>
+                            <h6 className='creator ms-3'>Creator:<br />{project.creator.name.length < 25 ? project.creator.name : project.creator.name.substring(0, 25) + '...'}</h6>
                         </div>
                     </div>
                 </div>

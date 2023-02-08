@@ -2,12 +2,11 @@ import {
   Avatar,
   Button,
   Col,
-  Dropdown,
   Input,
   List,
-  Menu,
   Modal,
   Row,
+  Space,
   Table,
   Tooltip,
   Typography,
@@ -15,7 +14,6 @@ import {
 import {
   DeleteOutlined,
   EditOutlined,
-  EllipsisOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useRef } from "react";
@@ -27,6 +25,7 @@ import {
   deleteProjectApi,
   getAllProjectApi,
 } from "../../redux/reducers/projectReducer";
+import { history } from "../../index";
 
 const Projects = () => {
   const tableIsBreak = useMediaQuery({ maxWidth: 624 });
@@ -153,36 +152,20 @@ const Projects = () => {
             title="Actions"
             key="actions"
             render={(record) => {
-              const menu = (
-                <Menu className="rounded">
-                  <Menu.Item key="projectSettings">
-                    <Link
-                      to={`/projects/${record.id}/edit`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Project settings
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="moveToTrash">
-                    <Typography.Text
-                      onClick={showConfirmDeleteProjectModal(record)}
-                    >
-                      Move to trash
-                    </Typography.Text>
-                  </Menu.Item>
-                </Menu>
-              );
-
               return (
-                <Dropdown
-                  placement="bottomRight"
-                  overlay={menu}
-                  trigger={["click"]}
-                >
-                  <Button className="d-flex justify-content-center align-items-center py-0 px-2 border-0 rounded shadow-none text-black hover:text-black focus:text-white bg-transparent hover:bg-gray-300 focus:bg-gray-700">
-                    <EllipsisOutlined className="text-xl" />
-                  </Button>
-                </Dropdown>
+                <Space size="small">
+                  <EditOutlined
+                    onClick={() => {
+                      history.push(`/projects/${record.id}/edit`);
+                    }}
+                    style={{ fontSize: "20px", color: "#1677ff" }}
+                  />
+
+                  <DeleteOutlined
+                    style={{ fontSize: "20px", color: "red" }}
+                    onClick={showConfirmDeleteProjectModal(record)}
+                  />
+                </Space>
               );
             }}
           />
