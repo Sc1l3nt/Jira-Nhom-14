@@ -51,7 +51,7 @@ export const updateTaskStatusApi = ({ taskId, statusId }, callback) => {
 
 export const getTaskDetailApi = (taskId, callback) => {
   return async (dispatch) => {
-    const result = await http.get(`/Project/getTaskDetail`, taskId);
+    const result = await http.get(`/Project/getTaskDetail?taskId=${taskId}`);
     const action = getTaskDetailAction(result.data.content);
     dispatch(action);
     if (callback) callback();

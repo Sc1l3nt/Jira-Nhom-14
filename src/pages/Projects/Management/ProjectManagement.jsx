@@ -46,6 +46,8 @@ const ProjectManagement = () => {
   const [showAddMembersModal, setShowAddMembersModal] = useState(false);
   const newTaskRef = useRef(null);
 
+  console.log(projectDetail);
+
   const formik = useFormik({
     initialValues: {
       listUserAsign: [],
