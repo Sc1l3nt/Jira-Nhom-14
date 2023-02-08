@@ -38,10 +38,20 @@ export const TaskItem = ({ listTaskDetailItem, index, onClick }) => {
                     placement="bottom"
                   >
                     {listTaskDetailItem.taskTypeDetail.id === 1 && (
-                      <BugOutlined />
+                      <BugOutlined
+                        style={{
+                          color: "red",
+                        }}
+                        className="me-2"
+                      />
                     )}
                     {listTaskDetailItem.taskTypeDetail.id === 2 && (
-                      <CheckOutlined />
+                      <CheckOutlined
+                        style={{
+                          color: "#4b92ff",
+                        }}
+                        className="me-2"
+                      />
                     )}
                   </Tooltip>
 
@@ -54,7 +64,11 @@ export const TaskItem = ({ listTaskDetailItem, index, onClick }) => {
                 <div className="h-full w-full flex justify-end items-end">
                   {!listTaskDetailItem.assigness.length && (
                     <Tooltip title="Unassigned" placement="top">
-                      <Avatar size="small" icon={<UserOutlined />} />
+                      <Avatar
+                        size="small"
+                        icon={<UserOutlined />}
+                        onClick={() => alert("CLICKED")}
+                      />
                     </Tooltip>
                   )}
                   {listTaskDetailItem.assigness && (

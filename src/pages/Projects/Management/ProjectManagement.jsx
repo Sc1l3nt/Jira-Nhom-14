@@ -2,7 +2,6 @@ import { BugOutlined, CheckOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Avatar,
   Breadcrumb,
-  Button,
   Col,
   Modal,
   Row,
@@ -205,7 +204,7 @@ const ProjectManagement = () => {
     return <PageNotFound />;
   }
   return (
-    <>
+    <div className="p-3">
       <Breadcrumb className="mb-4">
         <Breadcrumb.Item>
           <Link to="/projects">Projects</Link>
@@ -221,7 +220,7 @@ const ProjectManagement = () => {
         <Col xs={{ span: 24 }} md={{ span: 18 }}>
           {!!projectDetail?.members.length && (
             <Typography.Text strong className="mr-4">
-              Members
+              Members{" "}
             </Typography.Text>
           )}
 
@@ -243,10 +242,17 @@ const ProjectManagement = () => {
             </Typography.Text>
           )}
 
-          <Button
-            shape="circle"
-            icon={<PlusOutlined />}
-            className="hover:border-blue-600 focus:border-blue-600 hover:text-blue-600 focus:text-blue-600"
+          <PlusOutlined
+            className="ms-1"
+            style={{
+              cursor: "pointer",
+              border: "2px solid #eee",
+              fontSize: "16px",
+              borderRadius: "50%",
+              padding: "0.4rem",
+              color: "#fff",
+              backgroundColor: "#4cb639",
+            }}
             onClick={() => setShowAddMembersModal(true)}
           />
         </Col>
@@ -263,16 +269,22 @@ const ProjectManagement = () => {
                 key={listTaskItem.statusId}
                 className="mb-4"
               >
-                <div className="bg-gray-100 w-full h-full p-2 rounded flex flex-col">
+                <div
+                  style={{
+                    backgroundColor: "#f4f5f7",
+                    padding: "8px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <div style={{ visibility: "hidden" }}>AAAAAA</div>
                   <TaskListTitle title={listTaskItem.statusName} />
-
+                  <hr />
                   <Droppable droppableId={listTaskItem.statusId}>
                     {(provided) => {
                       return (
                         <div
                           ref={provided.innerRef}
                           {...provided.droppableProps}
-                          className="flex-grow"
                         >
                           {listTaskItem.lstTaskDeTail.map(
                             (listTaskDetailItem, index) => {
@@ -292,14 +304,14 @@ const ProjectManagement = () => {
                           {provided.placeholder}
 
                           {listTaskItem.statusName === "BACKLOG" && (
-                            <>
+                            <div>
                               {!showNewTaskTextarea && (
                                 <button
                                   onClick={() => setShowNewTaskTextarea(true)}
-                                  className="h-8 hover:bg-gray-300 focus:bg-gray-300 w-full text-left font-medium mt-1 py-1 px-3 rounded duration-300"
+                                  className="btn btn-primary d-flex align-items-center mt-2"
                                 >
                                   <PlusOutlined className="mr-1" />
-                                  <span>Create</span>
+                                  <span className="ms-2">Create</span>
                                 </button>
                               )}
                               {showNewTaskTextarea && (
@@ -359,19 +371,35 @@ const ProjectManagement = () => {
                                                   placement="bottom"
                                                 >
                                                   {type.id === 1 && (
-                                                    <BugOutlined />
+                                                    <BugOutlined
+                                                      style={{
+                                                        color: "red",
+                                                      }}
+                                                    />
                                                   )}
                                                   {type.id === 2 && (
-                                                    <CheckOutlined />
+                                                    <CheckOutlined
+                                                      style={{
+                                                        color: "#4b92ff",
+                                                      }}
+                                                    />
                                                   )}
                                                 </Tooltip>
                                               </div>
                                             }
                                           >
                                             <div className="flex justify-start items-center">
-                                              {type.id === 1 && <BugOutlined />}
+                                              {type.id === 1 && (
+                                                <BugOutlined
+                                                  style={{ color: "red" }}
+                                                  className="me-2"
+                                                />
+                                              )}
                                               {type.id === 2 && (
-                                                <CheckOutlined />
+                                                <CheckOutlined
+                                                  style={{ color: "#4b92ff" }}
+                                                  className="me-2"
+                                                />
                                               )}
                                               <span>
                                                 {type.taskType
@@ -392,7 +420,7 @@ const ProjectManagement = () => {
                                   )}
                                 </>
                               )}
-                            </>
+                            </div>
                           )}
                         </div>
                       );
@@ -422,7 +450,7 @@ const ProjectManagement = () => {
           showFooter={false}
         />
       )}
-    </>
+    </div>
   );
 };
 

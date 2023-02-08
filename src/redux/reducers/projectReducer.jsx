@@ -7,6 +7,7 @@ const initialState = {
   projectMembers: [],
   projectDetail: null,
   projectError: null,
+  projectEdit: null,
 };
 
 const projectReducer = createSlice({
@@ -40,6 +41,9 @@ const projectReducer = createSlice({
     getUsersByProjectIdAction: (state, action) => {
       state.projectMembers = action.payload;
     },
+    getProjectEditAction: (state, action) => {
+      state.projectEdit = action.payload;
+    },
   },
 });
 
@@ -53,6 +57,7 @@ export const {
   setProjectDetailNullAction,
   setProjectErrorNullAction,
   getUsersByProjectIdAction,
+  getProjectEditAction,
 } = projectReducer.actions;
 
 export default projectReducer.reducer;
