@@ -7,10 +7,7 @@ const initialState = {
   projectMembers: [],
   projectDetail: null,
   projectError: null,
-  statusTask: null,
-  taskType: null,
-  priority: null,
-  createTask: null,
+  projectEdit: null,
 };
 
 const projectReducer = createSlice({
@@ -18,9 +15,6 @@ const projectReducer = createSlice({
   initialState,
   reducers: {
     getAllProjectAction: (state, action) => {
-      state.projectList = action.payload;
-    },
-    deleteProjectAction: (state, action) => {
       state.projectList = action.payload;
     },
     searchProjectAction: (state, action) => {
@@ -38,15 +32,6 @@ const projectReducer = createSlice({
     getProjectDetailAction: (state, action) => {
       state.projectDetail = action.payload;
     },
-    updateProjectAction: (state, action) => {
-      state.projectDetail = action.payload;
-    },
-    assignUserTaskAction: (state, action) => {
-      state.projectDetail = action.payload;
-    },
-    removeUserFromTaskAction: (state, action) => {
-      state.projectDetail = action.payload;
-    },
     setProjectDetailNullAction: (state, action) => {
       state.projectDetail = action.payload;
     },
@@ -56,23 +41,23 @@ const projectReducer = createSlice({
     getUsersByProjectIdAction: (state, action) => {
       state.projectMembers = action.payload;
     },
+    getProjectEditAction: (state, action) => {
+      state.projectEdit = action.payload;
+    },
   },
 });
 
 export const {
   getAllProjectAction,
-  deleteProjectAction,
   searchProjectAction,
   getAllProjectCategoryAction,
   createProjectAction,
   createProjectAuthorizeAction,
   getProjectDetailAction,
-  updateProjectAction,
-  assignUserTaskAction,
-  removeUserFromTaskAction,
   setProjectDetailNullAction,
   setProjectErrorNullAction,
   getUsersByProjectIdAction,
+  getProjectEditAction,
 } = projectReducer.actions;
 
 export default projectReducer.reducer;
@@ -87,11 +72,7 @@ export const getAllProjectApi = (params) => {
 
 export const deleteProjectApi = (projectId) => {
   return async (dispatch) => {
-    const result = await http.delete(
-      `/Project/deleteProject?projectId=${projectId}`
-    );
-    const action = deleteProjectAction(result.data.content);
-    dispatch(action);
+    await http.delete(`/Project/deleteProject?projectId=${projectId}`);
     window.location.reload();
   };
 };
@@ -133,12 +114,10 @@ export const getProjectDetailApi = (projectId) => {
 
 export const updateProjectApi = (projectUpdate) => {
   return async (dispatch) => {
-    const result = await http.put(
+    await http.put(
       `/Project/updateProject?projectId=${projectUpdate.id}`,
       projectUpdate
     );
-    const action = updateProjectAction(result.data.content);
-    dispatch(action);
     window.location.reload();
   };
 };
@@ -154,26 +133,6 @@ export const assignUserToProjectApi = (addUser, callback) => {
         dispatch(setProjectErrorNullAction(error.response.data.content));
       }
     }
-  };
-};
-
-export const assignUserTaskApi = ({ taskId, userId }) => {
-  return async (dispatch) => {
-    await http.post(`/Project/assignUserTask`, {
-      taskId,
-      userId,
-    });
-  };
-};
-
-export const removeUserFromTaskApi = ({ taskId, userId }) => {
-  return async (dispatch) => {
-    const result = await http.post("/Project/removeUserFromTask", {
-      taskId,
-      userId,
-    });
-    const action = removeUserFromTaskAction(result.data.content);
-    dispatch(action);
   };
 };
 

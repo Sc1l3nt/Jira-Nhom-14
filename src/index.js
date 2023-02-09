@@ -66,7 +66,6 @@ root.render(
           <Route path="users" element={<Users />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
-
       </Routes>
     </HistoryRouter>
   </Provider>
