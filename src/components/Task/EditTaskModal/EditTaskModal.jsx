@@ -221,7 +221,6 @@ export const EditTaskModal = (props) => {
       priorityId: value,
     };
 
-    console.log(data);
     dispatch(
       updatePriorityApi(data, () => {
         // update Edit task modal
@@ -426,14 +425,14 @@ export const EditTaskModal = (props) => {
               <Typography.Title
                 level={4}
                 className={`p-1 rounded hover:bg-gray-200 duration-300 border border-transparent hover:border-gray-200${
-                  !showTaskNameInput ? " block" : " hidden"
+                  !showTaskNameInput ? " d-block" : " d-none"
                 }`}
                 onClick={handleClickTaskNameLabel}
               >
                 {formik.values.taskName}
               </Typography.Title>
               <Form
-                className={showTaskNameInput ? "block" : "hidden"}
+                className={showTaskNameInput ? "d-block" : "d-none"}
                 onFinish={handleSubmitTaskName}
               >
                 <Form.Item>
@@ -450,9 +449,11 @@ export const EditTaskModal = (props) => {
 
                 <div
                   className={`absolute bottom-0 right-0 pt-1${
-                    showTaskNameInput ? " block" : " hidden"
+                    showTaskNameInput ? " d-block" : " d-none"
                   }`}
-                  style={{ transform: "translateY(100%)" }}
+                  style={{
+                    transform: "translateX(88%)",
+                  }}
                 >
                   <Button
                     htmlType="submit"
@@ -685,7 +686,7 @@ export const EditTaskModal = (props) => {
                   >
                     <div
                       className={`${
-                        !showEstimateInput ? "block" : "hidden"
+                        !showEstimateInput ? "d-block" : "d-none"
                       } p-1 rounded hover:bg-gray-200 duration-300 border border-transparent hover:border-gray-200`}
                       onClick={handleClickEstimateValue}
                     >
@@ -699,15 +700,15 @@ export const EditTaskModal = (props) => {
                       onChange={formik.handleChange}
                       onKeyDown={handleKeyDownEstimateValue}
                       className={`${
-                        showEstimateInput ? "block" : "hidden"
+                        showEstimateInput ? "d-block" : "d-none"
                       } rounded px-2`}
                       ref={estimateInputRef}
                     />
                     <div
                       className={`absolute bottom-0 right-0 pt-1${
-                        showEstimateInput ? " block" : " hidden"
+                        showEstimateInput ? " d-block" : " d-none"
                       }`}
-                      style={{ transform: "translateY(100%)", zIndex: 1 }}
+                      style={{ transform: "translateX(70%)", zIndex: 1 }}
                     >
                       <Button
                         htmlType="submit"
