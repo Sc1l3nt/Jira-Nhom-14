@@ -173,17 +173,41 @@ export const EditTaskModal = (props) => {
     }
 
     // call api here
+    console.log(formik.values);
+
+    const updatedData = {
+      listUserAsign: formik.values.listUserAsign,
+      taskId: formik.values.taskId,
+      taskName: formik.values.taskName,
+      description: formik.values.description,
+      statusId: formik.values.statusId,
+      originalEstimate: formik.values.originalEstimate,
+      timeTrackingSpent: formik.values.timeTrackingSpent,
+      timeTrackingRemaining: formik.values.timeTrackingRemaining,
+      projectId: formik.values.projectId,
+      typeId: formik.values.typeId,
+      priorityId: formik.values.priorityId,
+    };
+    dispatch(
+      updateTaskApi(updatedData, () => {
+        // update Edit task modal
+        dispatch(getTaskDetailApi(taskId));
+
+        // update Manage tasks page
+        dispatch(getProjectDetailApi(projectId));
+      })
+    );
     // replacement for api calling action (lỗi backend: không update được taskName)
-    Modal.warning({
-      title: "Opps! This feature is under construction",
-      content: "We're sorry for this inconvenience",
-      okText: "OK",
-      zIndex: 1050,
-      style: { top: 80 },
-      onOk: () => {
-        formik.setFieldValue("taskName", prevValues.current.taskName);
-      },
-    });
+    // Modal.warning({
+    //   title: "Opps! This feature is under construction",
+    //   content: "We're sorry for this inconvenience",
+    //   okText: "OK",
+    //   zIndex: 1050,
+    //   style: { top: 80 },
+    //   onOk: () => {
+    //     formik.setFieldValue("taskName", prevValues.current.taskName);
+    //   },
+    // });
   };
 
   const handleClickDescriptionLabel = () => {
