@@ -3,10 +3,13 @@ import * as yup from "yup";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Input, Typography } from "antd";
-import { LockOutlined, TwitterOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import swal from "sweetalert2";
-import { loginApi } from "../../redux/reducers/userReducer";
+import { loginApi, loginFacebookApi } from "../../redux/reducers/userReducer";
 import { useDispatch } from "react-redux";
+import FacebookLogin from "react-facebook-login";
+import { FACEBOOK_LOGIN_API } from "../../constants";
+import "../../assets/scss/Login/Login.scss";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -51,6 +54,15 @@ const Login = () => {
       confirmButtonText: "OK",
     });
   };
+
+  const responseFacebook = (response) => {
+    console.log("response", response);
+    if (response) {
+      const facebookToken = response.accessToken;
+      const asyncAction = loginFacebookApi(facebookToken);
+      dispatch(asyncAction);
+    }
+  };
   return (
     <form
       onSubmit={formLogin.handleSubmit}
@@ -58,7 +70,10 @@ const Login = () => {
       style={{ height: "auto", width: "auto" }}
     >
       <div className="flex flex-col justify-center items-center min-h-screen ">
-        <h3 className="text-center" style={{ fontWeight: 500, fontSize: '2rem' }}>
+        <h3
+          className="text-center"
+          style={{ fontWeight: 500, fontSize: "2rem" }}
+        >
           {" "}
           Login
         </h3>
@@ -130,30 +145,17 @@ const Login = () => {
 
         {/* fb btn*/}
         <div className="social mt-3 d-flex justify-content-center">
-          <Button
-            style={{
-              backgroundColor: "rgb(59,89,152)",
-              height: 42,
-              width: 42,
-              marginRight: 5,
-            }}
-            shape="circle"
-          >
-            <span
-              className="font-bold"
-              style={{ color: "#fff", fontSize: 20 }}
-            >
-              f
-            </span>
-          </Button>
-
-          {/* twitter btn */}
-          <Button
-            type="primary"
-            shape="circle"
-            icon={<TwitterOutlined />}
-            style={{ height: 41, width: 41 }}
-          ></Button>
+          <FacebookLogin
+            appId={FACEBOOK_LOGIN_API}
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
+            cssClass="btnFacebook"
+            icon={
+              <i className="fa fa-facebook" style={{ marginLeft: "5px" }}></i>
+            }
+            textButton="&nbsp;&nbsp;Sign In with Facebook"
+          />
         </div>
       </div>
     </form>

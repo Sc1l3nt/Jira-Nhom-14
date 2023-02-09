@@ -55,6 +55,7 @@ export const loginApi = (userLogin) => {
     const result = await http.post("/Users/signin", userLogin);
     const action = loginAction(result.data.content);
     dispatch(action);
+    console.log("userReducer", result.data.content);
     localStorage.setItem("user_login", JSON.stringify(result.data.content));
     localStorage.setItem("access_token", result.data.content.accessToken);
     //login successfully, redirect to profile page
@@ -64,7 +65,9 @@ export const loginApi = (userLogin) => {
 
 export const loginFacebookApi = (facebookToken) => {
   return async (dispatch) => {
-    const result = await http.post("/Users/facebooklogin", facebookToken);
+    const result = await http.post("/Users/facebooklogin", {
+      facebookToken: facebookToken,
+    });
     const action = loginAction(result.data.content);
     dispatch(action);
     localStorage.setItem("user_login", JSON.stringify(result.data.content));

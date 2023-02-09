@@ -65,7 +65,6 @@ root.render(
           <Route path="users" element={<ReponsiveItem component={Users} componentMobile={UsersMobile} />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
-
       </Routes>
     </HistoryRouter>
   </Provider>
