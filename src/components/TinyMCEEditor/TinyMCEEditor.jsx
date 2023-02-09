@@ -19,6 +19,7 @@ const TinyMCEEditor = ({ name, value, onEditorChange }) => {
       <Editor
         apiKey="h3j54i7u548oxjwek3y2g3rqib7ddfux5grwecbjcwk5w46h"
         init={{
+          height: 200,
           menubar: false,
           plugins: [
             "advlist autolink lists link image charmap print preview anchor",
@@ -38,9 +39,6 @@ const TinyMCEEditor = ({ name, value, onEditorChange }) => {
         value={value}
         onEditorChange={onEditorChange}
         onInit={handleOnInit}
-        style={{
-          height: "10vh !important",
-        }}
       />
     </>
   );

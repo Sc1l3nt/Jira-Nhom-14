@@ -207,6 +207,8 @@ export const EditTaskModal = (props) => {
       description: formik.values.description,
     };
 
+    console.log(data);
+
     dispatch(
       updateDescriptionApi(data, () => {
         dispatch(getTaskDetailApi(taskId));
@@ -504,7 +506,7 @@ export const EditTaskModal = (props) => {
 
                   <Form.Item>
                     <Button
-                      className="bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded mr-1"
+                      className="bg-primary text-white me-2"
                       onClick={handleSubmitDescription}
                     >
                       Save
