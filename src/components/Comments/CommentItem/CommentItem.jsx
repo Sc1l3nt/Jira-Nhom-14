@@ -1,6 +1,6 @@
 import { Comment } from "@ant-design/compatible";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Avatar, Button, Form, Modal, Typography } from "antd";
+import { Avatar, Button, Form, Modal, Tag, Typography } from "antd";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -48,22 +48,18 @@ export const CommentItem = ({ taskId, comment }) => {
     <Button
       type="link"
       key="edit-comment"
-      className="px-0 font-medium hover mr-2"
+      className="px-0 mr-2"
       onClick={() => setShowEditCommentInput(true)}
     >
-      <span className="hover:underline text-gray-500 hover:text-gray-400">
-        Edit
-      </span>
+      <Tag className="bg-info text-white">Edit</Tag>
     </Button>,
     <Button
       type="link"
       key="delete-comment"
-      className="px-0 font-medium hover"
+      className="px-0"
       onClick={() => setShowDeleteCommentModal(true)}
     >
-      <span className="hover:underline text-gray-500 hover:text-gray-400">
-        Delete
-      </span>
+      <Tag className="bg-danger text-white">Delete</Tag>
     </Button>,
   ];
 
@@ -92,11 +88,7 @@ export const CommentItem = ({ taskId, comment }) => {
   };
 
   const handleDeleteComment = () => {
-    dispatch(
-      deleteCommentApi({ idComment: id }, () =>
-        dispatch(getTaskDetailApi(taskId))
-      )
-    );
+    dispatch(deleteCommentApi(id, () => dispatch(getTaskDetailApi(taskId))));
   };
   return (
     <div>
@@ -125,16 +117,11 @@ export const CommentItem = ({ taskId, comment }) => {
                 <Form.Item className="mb-0">
                   <Button
                     htmlType="submit"
-                    className="bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded mr-1"
+                    className="bg-primary text-white me-2"
                   >
                     Save
                   </Button>
-                  <Button
-                    className="hover:bg-gray-200 text-gray-700 hover:text-gray-700 font-semibold border-transparent hover:border-gray-200 rounded shadow-none"
-                    onClick={handleCancelEditComment}
-                  >
-                    Cancel
-                  </Button>
+                  <Button onClick={handleCancelEditComment}>Cancel</Button>
                 </Form.Item>
               </Form>
             )}
@@ -146,19 +133,16 @@ export const CommentItem = ({ taskId, comment }) => {
       <Modal
         open={showDeleteCommentModal}
         onCancel={() => setShowDeleteCommentModal(false)}
-        maskStyle={{ zIndex: 1050 }}
-        wrapClassName="z-modal"
-        className="z-modal"
         footer={null}
         closable={false}
         width={400}
         style={{ top: 80 }}
       >
         <Typography.Title level={4}>
-          <div className="flex items-center">
+          <div className="d-flex align-items-center">
             <ExclamationCircleOutlined
               style={{ color: "#de350b", fill: "#ffffff" }}
-              className="mr-1"
+              className="me-1"
             />
             <span> Delete this comment?</span>
           </div>
@@ -168,16 +152,10 @@ export const CommentItem = ({ taskId, comment }) => {
 
         <Form className="mt-4" onFinish={handleDeleteComment}>
           <Form.Item className="mb-0 text-right">
-            <Button
-              htmlType="submit"
-              className="bg-red-600 hover:bg-red-500 focus:bg-red-600 text-white font-semibold hover:text-white focus:text-white border-red-600 hover:border-red-500 focus:border-red-600 rounded mr-1"
-            >
+            <Button htmlType="submit" className="bg-danger text-white me-2">
               Delete
             </Button>
-            <Button
-              className="hover:bg-gray-200 text-gray-700 hover:text-gray-700 font-semibold border-transparent hover:border-gray-200 rounded shadow-none"
-              onClick={() => setShowDeleteCommentModal(false)}
-            >
+            <Button onClick={() => setShowDeleteCommentModal(false)}>
               Cancel
             </Button>
           </Form.Item>
