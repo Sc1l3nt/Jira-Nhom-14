@@ -54,6 +54,10 @@ const Login = () => {
       confirmButtonText: "OK",
     });
   };
+
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
   return (
     <form
       onSubmit={formLogin.handleSubmit}
@@ -140,9 +144,7 @@ const Login = () => {
             appId={FACEBOOK_LOGIN_API}
             autoLoad={false}
             fields="name,email,picture"
-            // callback={this.props.SocialSignUp}
-            // onClick={componentClicked}
-            // callback={responseFacebook}
+            callback={responseFacebook}
             cssClass="btnFacebook"
             icon={
               <i className="fa fa-facebook" style={{ marginLeft: "5px" }}></i>
