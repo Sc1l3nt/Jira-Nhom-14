@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { Button, Input, Typography } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import swal from "sweetalert2";
-import { loginApi } from "../../redux/reducers/userReducer";
+import { loginApi, loginFacebookApi } from "../../redux/reducers/userReducer";
 import { useDispatch } from "react-redux";
 import FacebookLogin from "react-facebook-login";
 import { FACEBOOK_LOGIN_API } from "../../constants";
@@ -56,7 +56,12 @@ const Login = () => {
   };
 
   const responseFacebook = (response) => {
-    console.log(response);
+    console.log("response", response);
+    if (response) {
+      const facebookToken = response.accessToken;
+      const asyncAction = loginFacebookApi(facebookToken);
+      dispatch(asyncAction);
+    }
   };
   return (
     <form
