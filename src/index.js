@@ -42,6 +42,7 @@ root.render(
             />
           }
         >
+          <Route index element={<Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
@@ -55,10 +56,9 @@ root.render(
           }
         >
           {/* PROJECT ROUTE  */}
-          <Route index element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
           <Route path="projects" element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
           <Route path="create-project" element={<ProjectNew />} />
-          <Route path="setting/:id" element={<ProjectEdit />} />
+          <Route path="projects/:id/edit" element={<ProjectEdit />} />
           <Route path="projects/:projectId/board" element={<ProjectManagement />} />
           {/* USER ROUTE  */}
           <Route path="profile" element={<Profile />} />

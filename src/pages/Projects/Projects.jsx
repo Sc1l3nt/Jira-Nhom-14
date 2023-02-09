@@ -26,6 +26,7 @@ import {
   getAllProjectApi,
 } from "../../redux/reducers/projectReducer";
 import { history } from "../../index";
+import { getTaskId } from "../../redux/reducers/taskReducer";
 
 const Projects = () => {
   const tableIsBreak = useMediaQuery({ maxWidth: 624 });
@@ -92,12 +93,12 @@ const Projects = () => {
         <Typography.Title level={3} className="flex-grow me-5">
           Projects
         </Typography.Title>
-          <Input
-            allowClear
-            suffix={<SearchOutlined />}
-            className="w-25"
-            onChange={handleSearch}
-          />
+        <Input
+          allowClear
+          suffix={<SearchOutlined />}
+          className="w-25"
+          onChange={handleSearch}
+        />
       </div>
 
       {!tableIsBreak && (
@@ -113,7 +114,9 @@ const Projects = () => {
             dataIndex="projectName"
             key="projectName"
             render={(projectName, record) => (
-              <Link to={`/projects/${record.id}/board`}>{projectName}</Link>
+              <Link to={`/projects/${record.id}/board`} onClick={()=>{
+                dispatch(getTaskId({id:record.id, name:record.projectName}))
+              }}>{projectName}</Link>
             )}
             sorter={(a, b) => a.projectName.localeCompare(b.projectName)}
           />
