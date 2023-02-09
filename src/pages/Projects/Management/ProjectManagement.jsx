@@ -33,7 +33,6 @@ import PageNotFound from "../../PageNotFound/PageNotFound";
 const ProjectManagement = () => {
   const params = useParams();
   const projectId = parseInt(params.projectId);
-  console.log(params);
   const dispatch = useDispatch();
   const { projectDetail, projectError } = useSelector(
     (state) => state.projectReducer
@@ -45,8 +44,6 @@ const ProjectManagement = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [showAddMembersModal, setShowAddMembersModal] = useState(false);
   const newTaskRef = useRef(null);
-
-  console.log(projectDetail);
 
   const formik = useFormik({
     initialValues: {
@@ -103,6 +100,10 @@ const ProjectManagement = () => {
 
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
+    // draggableId == taskId
+    console.log("source", source);
+    console.log("destination", destination);
+    console.log("draggableId", draggableId);
     const clonedProject = { ...projectDetail };
 
     if (!destination) {
@@ -122,16 +123,20 @@ const ProjectManagement = () => {
       ],
     };
 
-    clonedProject.lstTask[source.droppableId - 1].lstTaskDeTail.splice(
-      source.index,
-      1
-    );
+    console.log("draggedItem", draggedItem);
 
-    clonedProject.lstTask[destination.droppableId - 1].lstTaskDeTail.splice(
-      destination.index,
-      0,
-      draggedItem
-    );
+    // // xóa tại source.index 1 phần tử
+    // clonedProject.lstTask[source.droppableId - 1].lstTaskDeTail.splice(
+    //   source.index,
+    //   1
+    // );
+
+    // // tại destination.index, thêm phần tử draggedItem
+    // clonedProject.lstTask[destination.droppableId - 1].lstTaskDeTail.splice(
+    //   destination.index,
+    //   0,
+    //   draggedItem
+    // );
 
     setClonedProjectDetail(clonedProject);
 

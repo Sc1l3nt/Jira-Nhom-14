@@ -26,7 +26,6 @@ import "./index.scss";
 import LoginTemplate from "./templates/LoginTemplate/LoginTemplate";
 import LoginTemplateMobile from "./templates/LoginTemplate/LoginTemplateMobile";
 import Test from "./components/Test";
-import { Board } from "./pages/Projects/Board/Board";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -59,9 +59,6 @@ export const TimeTrackingModal = (props) => {
     <Modal
       open={visible}
       onCancel={onCancel}
-      maskStyle={{ zIndex: 1050 }}
-      wrapClassName="z-modal"
-      className="z-modal"
       footer={null}
       closable={false}
       destroyOnClose={true}

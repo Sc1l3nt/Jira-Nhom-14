@@ -724,8 +724,6 @@ export const EditTaskModal = (props) => {
       <Modal
         open={showDeleteTaskModal}
         onCancel={() => setShowDeleteTaskModal(false)}
-        maskStyle={{ zIndex: 1050 }}
-        wrapClassName="z-modal"
         className="z-modal"
         footer={null}
         closable={false}
@@ -752,16 +750,10 @@ export const EditTaskModal = (props) => {
 
         <Form className="mt-4" onFinish={handleDeleteTask}>
           <Form.Item className="mb-0 text-right">
-            <Button
-              htmlType="submit"
-              className="bg-red-600 hover:bg-red-500 focus:bg-red-600 text-white font-semibold hover:text-white focus:text-white border-red-600 hover:border-red-500 focus:border-red-600 rounded mr-1"
-            >
+            <Button htmlType="submit" type="danger">
               Delete
             </Button>
-            <Button
-              className="hover:bg-gray-200 text-gray-700 hover:text-gray-700 font-semibold border-transparent hover:border-gray-200 rounded shadow-none"
-              onClick={() => setShowDeleteTaskModal(false)}
-            >
+            <Button onClick={() => setShowDeleteTaskModal(false)}>
               Cancel
             </Button>
           </Form.Item>

@@ -36,8 +36,6 @@ const AddMemberModal = (props) => {
   const usersRef = useRef(null);
   const searchRef = useRef(null);
 
-  console.log("render: ", projectId);
-
   useEffect(() => {
     //dispatch(getUsersByProjectIdApi(projectId));
     dispatch(getAllUserApi());
