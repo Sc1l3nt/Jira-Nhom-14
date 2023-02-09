@@ -15,7 +15,7 @@ const HomeSiderMobile = (props) => {
             <div className='btn p-0' onClick={handleChangeOpen}>
                 <BarsOutlined className='fs-4 text-primary' />
             </div>
-            <Drawer title="Jira" placement="left" onClose={handleChangeOpen} open={open}>
+            <Drawer className='w-75' title="Jira" placement="left" onClose={handleChangeOpen} open={open}>
                 <HomeMenu />
             </Drawer>
         </>

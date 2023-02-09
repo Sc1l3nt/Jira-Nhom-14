@@ -18,7 +18,6 @@ import Profile from "./pages/Profile/Profile";
 import Users from "./pages/Users/Users";
 import Projects from "./pages/Projects/Projects";
 import ProjectNew from "./pages/Projects/New/ProjectNew";
-import ProjectDetail from "./pages/Projects/Detail/ProjectDetail";
 import ProjectEdit from "./pages/Projects/Edit/ProjectEdit";
 import ProjectManagement from "./pages/Projects/Management/ProjectManagement";
 //SCSS
@@ -26,6 +25,7 @@ import "./index.scss";
 import LoginTemplate from "./templates/LoginTemplate/LoginTemplate";
 import LoginTemplateMobile from "./templates/LoginTemplate/LoginTemplateMobile";
 import ProjectsMobile from "./pages/Projects/ProjectsMobile";
+import UsersMobile from "./pages/Users/UsersMobile";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -58,12 +58,11 @@ root.render(
           <Route index element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
           <Route path="projects" element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
           <Route path="create-project" element={<ProjectNew />} />
-          <Route path="projects/:id" element={<ProjectDetail />} />
-          <Route path="projects/:id/edit" element={<ProjectEdit />} />
+          <Route path="setting/:id" element={<ProjectEdit />} />
           <Route path="projects/:projectId/board" element={<ProjectManagement />} />
           {/* USER ROUTE  */}
           <Route path="profile" element={<Profile />} />
-          <Route path="users" element={<Users />} />
+          <Route path="users" element={<ReponsiveItem component={Users} componentMobile={UsersMobile} />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
 

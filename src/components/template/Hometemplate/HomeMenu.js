@@ -1,6 +1,7 @@
 import React from 'react'
-import { ProjectOutlined, SettingOutlined, ProfileOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { ProjectOutlined, SettingOutlined, ProfileOutlined, PlusCircleOutlined, UserOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
+import { Link } from 'react-router-dom';
 
 function getItem(key, icon, label, type, children) {
     return {
@@ -14,12 +15,13 @@ function getItem(key, icon, label, type, children) {
 
 const HomeMenu = () => {
     const projectChildren = [
-        getItem('projectList', <ProfileOutlined className='fs-5' />, (<a href='projects'>Project List</a>)), 
-        getItem('projectCreate', <PlusCircleOutlined className='fs-5' />, (<a href='create-project'>Create Project</a>)),
+        getItem('projectList', <ProfileOutlined className='fs-5' />, (<Link to='projects'>Projects List</Link>)), 
+        getItem('userList', <UserOutlined className='fs-5' />, (<Link to='users'>Users List</Link>)), 
+        getItem('projectCreate', <PlusCircleOutlined className='fs-5' />, (<Link to='create-project'>Create Project</Link>)),
     ]
     const managementChildren = [
-        getItem('board', <ProjectOutlined className='fs-5' />, (<a href='projects/:projectId/board'>Kanban Board</a>)),
-        getItem('projectSetting', <SettingOutlined className='fs-5' />, (<a href='setting'>Project Setting</a>)),
+        getItem('board', <ProjectOutlined className='fs-5' />, (<Link to='projects/:projectId/board'>Kanban Board</Link>)),
+        getItem('projectSetting', <SettingOutlined className='fs-5' />, (<Link to='projects/:id/edit'>Project Setting</Link>)),
     ]
     const items = [
         getItem('1', null, <div>Project</div>, 'group', projectChildren),
@@ -30,7 +32,6 @@ const HomeMenu = () => {
             className='fs-6'
             mode="inline"
             defaultSelectedKeys={['1']}
-            onClick={(item) => { console.log(item.key) }}
             items={items}
         />
     )

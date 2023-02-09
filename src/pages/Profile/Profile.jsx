@@ -54,7 +54,7 @@ const Profile = () => {
     }, 400);
   };
   return (
-    <div style={{ maxWidth: 980 }} className="mx-auto">
+    <div style={{ maxWidth: 980 }} className="container my-5">
       <Row>
         <Col
           xs={{ span: 24 }}
