@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Form, Input, Row, Select } from 'antd'
 import { CheckCircleFilled, WarningFilled, PlusSquareFilled, CaretUpOutlined, UpOutlined, MinusOutlined, DownOutlined, CaretDownOutlined } from '@ant-design/icons';
 import '../../../assets/scss/CreateIssue/CreateForm.scss'
+import TinyTextArea from '../../TinyTextArea/TinyTextArea';
 
 const { Option } = Select;
 
@@ -117,10 +118,7 @@ const CreateForm = () => {
                                 },
                             ]}
                         >
-                            <Input.TextArea
-                                rows={4}
-                                placeholder="please enter url description"
-                            />
+                            <TinyTextArea name='description' value={''} setFieldValue={(name, value)=>{console.log(name, value)}}/>
                             <span className="text">
                                 Describe the issue in as much detail as you'd like.
                             </span>

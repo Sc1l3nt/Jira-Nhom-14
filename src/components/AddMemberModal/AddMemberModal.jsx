@@ -25,7 +25,7 @@ const AddMemberModal = (props) => {
   const { showFooter = true } = props;
   //const [projectId, setProjectId] = useState(props.project.id);
   const projectIdValueMemo = props.project.id;
-  const projectId = useMemo(() => projectIdValueMemo, []);
+  const projectId = useMemo(() => projectIdValueMemo, [projectIdValueMemo]);
 
   const dispatch = useDispatch();
   const { projectMembers, projectError } = useSelector(

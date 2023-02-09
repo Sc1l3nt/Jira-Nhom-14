@@ -25,7 +25,7 @@ import ProjectManagement from "./pages/Projects/Management/ProjectManagement";
 import "./index.scss";
 import LoginTemplate from "./templates/LoginTemplate/LoginTemplate";
 import LoginTemplateMobile from "./templates/LoginTemplate/LoginTemplateMobile";
-import Test from "./components/Test";
+import ProjectsMobile from "./pages/Projects/ProjectsMobile";
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -33,7 +33,6 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
-        <Route index element={<Test />} />
         <Route
           path="/"
           element={
@@ -56,14 +55,12 @@ root.render(
           }
         >
           {/* PROJECT ROUTE  */}
-          <Route path="projects" element={<Projects />} />
-          <Route path="projects/new" element={<ProjectNew />} />
+          <Route index element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
+          <Route path="projects" element={<ReponsiveItem component={Projects} componentMobile={ProjectsMobile} />} />
+          <Route path="create-project" element={<ProjectNew />} />
           <Route path="projects/:id" element={<ProjectDetail />} />
           <Route path="projects/:id/edit" element={<ProjectEdit />} />
-          <Route
-            path="projects/:projectId/board"
-            element={<ProjectManagement />}
-          />
+          <Route path="projects/:projectId/board" element={<ProjectManagement />} />
           {/* USER ROUTE  */}
           <Route path="profile" element={<Profile />} />
           <Route path="users" element={<Users />} />

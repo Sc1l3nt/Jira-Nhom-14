@@ -8,7 +8,7 @@ const { Sider, Content } = Layout;
 
 const LoginTemplate = () => {
     return (
-        <div className='login-template'>
+        <div className='bg-gif'>
             <Layout style={{ overflow: "hidden", backgroundColor: "transparent", height: window.innerHeight }}>
                 <Sider className='position-relative' width={(window.innerWidth / 6) * 4} style={{ backgroundColor: "transparent" }}>
                     <div className='position-absolute top-50 start-50 translate-middle w-100'>

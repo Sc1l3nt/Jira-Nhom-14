@@ -7,7 +7,7 @@ const { Content } = Layout;
 
 const LoginTemplateMobile = () => {
     return (
-        <div className='login-template'>
+        <div className='bg-gif'>
             <Layout style={{ overflow: "hidden", backgroundColor: "transparent", height: window.innerHeight }}>
                 <Content className='d-flex justify-content-center align-items-center'>
                     <div className="px-3 py-4 w-100">

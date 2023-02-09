@@ -10,7 +10,7 @@ import {
 import AddMemberModal from "../../../components/AddMemberModal/AddMemberModal";
 import { Breadcrumb, Button, Form, Input, Select, Typography } from "antd";
 import { Link } from "react-router-dom";
-import TinyMCEEditor from "../../../components/TinyMCEEditor/TinyMCEEditor";
+import TinyTextArea from "../../../components/TinyTextArea/TinyTextArea";
 
 const ProjectNew = () => {
   const dispatch = useDispatch();
@@ -70,15 +70,7 @@ const ProjectNew = () => {
   };
 
   return (
-    <div style={{ maxWidth: 980 }} className="mx-auto">
-      <Breadcrumb className="mb-4">
-        <Breadcrumb.Item>
-          <Link to="/projects">Projects</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>New project</Breadcrumb.Item>
-      </Breadcrumb>
-
-      <div className="mb-4">
+    <div style={{ maxWidth: 980 }} className="container my-5"><div className="mb-4">
         <Typography.Title level={3}>New project</Typography.Title>
       </div>
 
@@ -139,14 +131,7 @@ const ProjectNew = () => {
           label={<Typography.Text strong>Descriptions</Typography.Text>}
           style={{ minHeight: 230 }}
         >
-          <TinyMCEEditor
-            name="description"
-            value={formik.values.description}
-            onEditorChange={(newValue) => {
-              newValue = newValue.replace(/<[^>]*>/g, "");
-              formik.setFieldValue("description", newValue);
-            }}
-          />
+          <TinyTextArea value={formik.values.description} name={"description"} setFieldValue={formik.setFieldValue}/>
         </Form.Item>
 
         <div className="flex">

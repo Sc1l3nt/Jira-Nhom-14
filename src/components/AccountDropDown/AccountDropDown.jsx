@@ -12,7 +12,7 @@ const AccountDropDown = () => {
       trigger={["click"]}
       placement="bottomRight"
     >
-      <div className="btn p-0 mx-3">
+      <div className="btn p-0">
         <Avatar src={userLogin?.avatar} />
         <CaretDownOutlined className="ms-1 text-secondary icon-drop" />
       </div>

@@ -28,10 +28,10 @@ import {
 import { history } from "../../index";
 
 const Projects = () => {
-  const dispatch = useDispatch();
   const tableIsBreak = useMediaQuery({ maxWidth: 624 });
   const debounceSearchRef = useRef(null);
   const { projectList } = useSelector((state) => state.projectReducer);
+  const dispatch = useDispatch();
 
   const dataSource = projectList.map((project) => {
     return { ...project, key: project.id };
@@ -87,24 +87,17 @@ const Projects = () => {
   };
 
   return (
-    <>
-      <div className="mb-3 d-flex align-items-start">
+    <div className="container p-4">
+      <div className="mb-3 d-flex justify-content-between align-item-center">
         <Typography.Title level={3} className="flex-grow me-5">
           Projects
         </Typography.Title>
-        <div className="d-flex justify-content-between">
-          <Button type="primary" className="me-5">
-            <Link to="/projects/new" style={{ textDecoration: "none" }}>
-              Create project
-            </Link>
-          </Button>
           <Input
             allowClear
             suffix={<SearchOutlined />}
-            className="w-75"
+            className="w-25"
             onChange={handleSearch}
           />
-        </div>
       </div>
 
       {!tableIsBreak && (
@@ -252,7 +245,7 @@ const Projects = () => {
           )}
         />
       )}
-    </>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const CreateIssue = () => {
 
     return (
         <>
-            <FloatButton type="primary" style={{ right: '2rem', bottom: '1.5rem' }} icon={<PlusOutlined />} tooltip={<div>Create Issue</div>} onClick={showDrawer} />
+            <FloatButton type="primary" style={{ right: '2rem', bottom: '1.5rem' }} icon={<PlusOutlined className='fs-5' />} tooltip={<div>Create Issue</div>} onClick={showDrawer} />
             <Drawer
                 title="CREATE ISSUE"
                 width={window.innerWidth < 720 ? '100%' : 720}
