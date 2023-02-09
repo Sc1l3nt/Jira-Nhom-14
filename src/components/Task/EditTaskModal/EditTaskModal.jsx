@@ -221,8 +221,6 @@ export const EditTaskModal = (props) => {
       priorityId: value,
     };
 
-    console.log(data);
-
     dispatch(
       updatePriorityApi(data, () => {
         // update Edit task modal
@@ -643,29 +641,32 @@ export const EditTaskModal = (props) => {
                       onChange={handleChangePriorityId}
                       showArrow={false}
                       bordered={false}
-                      className="hover:bg-gray-200 rounded"
+                      style={{
+                        backgroundColor: "#e5e7eb",
+                        borderRadius: "8px",
+                      }}
                     >
                       <Select.Option value={1}>
-                        <div className="flex justify-start items-center">
-                          <UpOutlined />
+                        <div className="d-flex justify-content-start align-items-center">
+                          <UpOutlined className="text-danger me-2" />
                           <span>High</span>
                         </div>
                       </Select.Option>
                       <Select.Option value={2}>
-                        <div className="flex justify-start items-center">
-                          <MinusOutlined />
+                        <div className="d-flex justify-content-start align-items-center">
+                          <MinusOutlined className="text-warning me-2" />
                           <span>Medium</span>
                         </div>
                       </Select.Option>
                       <Select.Option value={3}>
-                        <div className="flex justify-start items-center">
-                          <DownOutlined />
+                        <div className="d-flex justify-content-start align-items-center">
+                          <DownOutlined className="text-info me-2" />
                           <span>Low</span>
                         </div>
                       </Select.Option>
                       <Select.Option value={4}>
-                        <div className="flex justify-start items-center">
-                          <CaretDownOutlined />
+                        <div className="d-flex justify-content-start align-items-center">
+                          <CaretDownOutlined className="text-info me-2" />
                           <span>Lowest</span>
                         </div>
                       </Select.Option>
