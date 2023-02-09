@@ -221,6 +221,7 @@ export const EditTaskModal = (props) => {
       priorityId: value,
     };
 
+    console.log(data);
     dispatch(
       updatePriorityApi(data, () => {
         // update Edit task modal
@@ -666,7 +667,7 @@ export const EditTaskModal = (props) => {
                       </Select.Option>
                       <Select.Option value={4}>
                         <div className="d-flex justify-content-start align-items-center">
-                          <CaretDownOutlined className="text-info me-2" />
+                          <CaretDownOutlined className="text-secondary me-2" />
                           <span>Lowest</span>
                         </div>
                       </Select.Option>

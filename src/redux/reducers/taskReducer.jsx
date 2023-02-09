@@ -82,12 +82,9 @@ export const updateDescriptionApi = ({ taskId, description }, callback) => {
   };
 };
 
-export const updatePriorityApi = ({ taskId, priorityId }, callback) => {
+export const updatePriorityApi = (updatedData, callback) => {
   return async (dispatch) => {
-    await http.put(`/Project/updatePriority`, {
-      taskId,
-      priorityId,
-    });
+    await http.put(`/Project/updatePriority`, updatedData);
     if (callback) callback();
   };
 };
