@@ -4,6 +4,7 @@ import {
 } from '@ant-design/icons';
 import { Drawer } from 'antd';
 import HomeMenu from './HomeMenu';
+import Search from '../Search/Search';
 
 const HomeSiderMobile = (props) => {
     const [open, setOpen] = useState(false);
@@ -16,7 +17,8 @@ const HomeSiderMobile = (props) => {
                 <BarsOutlined className='fs-4 text-primary' />
             </div>
             <Drawer className='w-75' title="Jira" placement="left" onClose={handleChangeOpen} open={open}>
-                <HomeMenu />
+                <Search widthShort={'100%'} widthLong={'100%'}/>
+                <HomeMenu/>
             </Drawer>
         </>
     );

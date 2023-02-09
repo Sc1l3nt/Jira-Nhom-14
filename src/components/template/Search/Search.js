@@ -7,11 +7,12 @@ import EditUserModal from '../../EditUserModal/EditUserModal';
 import { Link } from 'react-router-dom';
 import { getTaskId } from '../../../redux/reducers/taskReducer';
 
-const Search = () => {
+const Search = (props) => {
+    const { widthLong, widthShort } = props;
     const [options, setOptions] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showEditUserModal, setShowEditUserModal] = useState(false);
-    const [width, setWidth] = useState('15rem');
+    const [widthSearch, setWidthSearch] = useState(widthShort);
     const dispatch = useDispatch();
     const { userList } = useSelector((state) => state.userReducer);
     const { projectList } = useSelector((state) => state.projectReducer);
@@ -43,7 +44,7 @@ const Search = () => {
                         <span>
                             User: {category}
                         </span>
-                        <span>
+                        <span className='ms-1'>
                             ID: {item.userId} (User)
                         </span>
                     </div>
@@ -70,7 +71,7 @@ const Search = () => {
                         <span>
                             {category}
                         </span>
-                        <span>
+                        <span className='ms-1'>
                             ID: {item.id} (Project)
                         </span>
                     </Link>
@@ -92,11 +93,11 @@ const Search = () => {
     return (
         <>
             <AutoComplete
-                style={{ width: width, transition: 'all .5s' }}
+                style={{ width: widthSearch, transition: 'all .5s' }}
                 options={options}
                 onSearch={handleSearch}
-                onFocus={() => setWidth('30rem')}
-                onBlur={() => setWidth('15rem')}
+                onFocus={() => setWidthSearch(widthLong)}
+                onBlur={() => setWidthSearch(widthShort)}
             >
                 <Input
                     allowClear
