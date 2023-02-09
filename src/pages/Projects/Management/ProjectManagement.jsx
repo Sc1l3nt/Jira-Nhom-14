@@ -100,10 +100,6 @@ const ProjectManagement = () => {
 
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    // draggableId == taskId
-    console.log("source", source);
-    console.log("destination", destination);
-    console.log("draggableId", draggableId);
     const clonedProject = { ...projectDetail };
 
     if (!destination) {
@@ -122,8 +118,6 @@ const ProjectManagement = () => {
         source.index
       ],
     };
-
-    console.log("draggedItem", draggedItem);
 
     // // xóa tại source.index 1 phần tử
     // clonedProject.lstTask[source.droppableId - 1].lstTaskDeTail.splice(

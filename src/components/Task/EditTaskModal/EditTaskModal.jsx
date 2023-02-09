@@ -125,7 +125,7 @@ export const EditTaskModal = (props) => {
 
   const handleDeleteTask = () => {
     dispatch(
-      removeTaskApi({ taskId }, () =>
+      removeTaskApi(taskId, () =>
         dispatch(
           getProjectDetailApi(projectId, () => {
             setShowDeleteTaskModal(false);
@@ -178,10 +178,6 @@ export const EditTaskModal = (props) => {
       title: "Opps! This feature is under construction",
       content: "We're sorry for this inconvenience",
       okText: "OK",
-      okButtonProps: {
-        className:
-          "bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded",
-      },
       zIndex: 1050,
       style: { top: 80 },
       onOk: () => {
@@ -224,6 +220,8 @@ export const EditTaskModal = (props) => {
       taskId,
       priorityId: value,
     };
+
+    console.log(data);
 
     dispatch(
       updatePriorityApi(data, () => {
@@ -318,16 +316,13 @@ export const EditTaskModal = (props) => {
       <Modal
         open={props.visible}
         onCancel={props.onCancel}
-        // maskStyle={{ zIndex: 1050 }}
-        // wrapClassName="z-modal"
-        // className="z-modal"
         width={980}
         maskClosable={false}
         closable={false}
         footer={null}
         keyboard={false}
       >
-        <div className="flex justify-between items-center">
+        <div className="d-flex justify-content-between align-items-center">
           <div>
             <Select
               name="typeId"
@@ -335,7 +330,6 @@ export const EditTaskModal = (props) => {
               onChange={handleChangeType}
               bordered={false}
               showArrow={false}
-              className="mb-1 hover:bg-gray-100 rounded hover:shadow"
               dropdownMatchSelectWidth={false}
               style={{ marginLeft: "-8px" }}
             >
@@ -345,7 +339,7 @@ export const EditTaskModal = (props) => {
                     key={type.id}
                     value={type.id}
                     label={
-                      <div className="h-full flex items-center">
+                      <div className="d-flex align-items-center">
                         <Tooltip
                           title={
                             type.taskType.charAt(0).toUpperCase() +
@@ -353,15 +347,48 @@ export const EditTaskModal = (props) => {
                           }
                           placement="bottom"
                         >
-                          {type.id === 1 && <BugOutlined />}
-                          {type.id === 2 && <CheckOutlined />}
+                          {type.id === 1 && (
+                            <BugOutlined
+                              style={{
+                                color: "red",
+                              }}
+                            />
+                          )}
+                          {type.id === 2 && (
+                            <CheckOutlined
+                              style={{
+                                color: "#4b92ff",
+                              }}
+                            />
+                          )}
                         </Tooltip>
                       </div>
                     }
                   >
-                    <div className="flex justify-start items-center">
-                      {type.id === 1 && <BugOutlined />}
-                      {type.id === 2 && <CheckOutlined />}
+                    <div
+                      className="d-flex justify-content-start align-items-center"
+                      style={{
+                        background: "#e5e7eb",
+                        padding: "0 10px",
+                        borderRadius: "6px",
+                      }}
+                    >
+                      {type.id === 1 && (
+                        <BugOutlined
+                          style={{
+                            color: "red",
+                          }}
+                          className="me-2"
+                        />
+                      )}
+                      {type.id === 2 && (
+                        <CheckOutlined
+                          style={{
+                            color: "#4b92ff",
+                          }}
+                          className="me-2"
+                        />
+                      )}
                       <span>
                         {type.taskType.charAt(0).toUpperCase() +
                           type.taskType.slice(1)}
@@ -377,19 +404,19 @@ export const EditTaskModal = (props) => {
             <Button
               htmlType="button"
               icon={<DeleteOutlined />}
-              className="w-8 h-8 hover:bg-gray-100 hover:text-black focus:text-black border-0 p-0 shadow-none hover:shadow rounded mr-1"
+              className="border-0 p-0 shadow-none hover:shadow rounded"
               onClick={() => setShowDeleteTaskModal(true)}
             />
             <Button
               htmlType="button"
               icon={<CloseOutlined />}
-              className="w-8 h-8 hover:bg-gray-100 hover:text-black focus:text-black border-0 p-0 shadow-none hover:shadow rounded"
+              className="border-0 p-0 shadow-none hover:shadow rounded"
               onClick={props.onCancel}
             />
           </div>
         </div>
 
-        <Row gutter={32}>
+        <Row gutter={32} className="mt-3">
           <Col
             xs={24}
             md={14}
@@ -724,17 +751,16 @@ export const EditTaskModal = (props) => {
       <Modal
         open={showDeleteTaskModal}
         onCancel={() => setShowDeleteTaskModal(false)}
-        className="z-modal"
         footer={null}
         closable={false}
         width={400}
         style={{ top: 80 }}
       >
         <Typography.Title level={4}>
-          <div className="flex items-center">
+          <div className="d-flex align-items-center">
             <ExclamationCircleOutlined
               style={{ color: "#de350b", fill: "#ffffff" }}
-              className="mr-1"
+              className="me-1"
             />
             <span> Delete this task?</span>
           </div>
@@ -750,7 +776,7 @@ export const EditTaskModal = (props) => {
 
         <Form className="mt-4" onFinish={handleDeleteTask}>
           <Form.Item className="mb-0 text-right">
-            <Button htmlType="submit" type="danger">
+            <Button htmlType="submit" className="text-white bg-danger me-2">
               Delete
             </Button>
             <Button onClick={() => setShowDeleteTaskModal(false)}>
