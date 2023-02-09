@@ -113,18 +113,10 @@ export const TimeTrackingModal = (props) => {
           </Col>
         </Row>
         <Form.Item className="mb-0 text-right">
-          <Button
-            htmlType="submit"
-            className="bg-blue-700 hover:bg-blue-600 focus:bg-blue-700 text-white font-semibold hover:text-white focus:text-white border-blue-700 hover:border-blue-600 focus:border-blue-700 rounded mr-1"
-          >
+          <Button htmlType="submit" className="bg-primary text-white me-2">
             Save
           </Button>
-          <Button
-            className="hover:bg-gray-200 text-gray-700 hover:text-gray-700 font-semibold border-transparent hover:border-gray-200 rounded shadow-none"
-            onClick={onCancel}
-          >
-            Cancel
-          </Button>
+          <Button onClick={onCancel}>Cancel</Button>
         </Form.Item>
       </Form>
     </Modal>
