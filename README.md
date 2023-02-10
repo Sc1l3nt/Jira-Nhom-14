@@ -37,8 +37,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -87,20 +87,18 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a token at [https://login.cybersoft.edu.vn/course-roadmap/250](https://login.cybersoft.edu.vn/course-roadmap/250)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Sc1l3nt/Jira-Nhom-14
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your token in `src/constans/index.jsx`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const TOKEN_CYBERSOFT = 'ENTER YOUR TOKEN';
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -127,17 +125,6 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
