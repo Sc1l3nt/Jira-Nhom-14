@@ -51,7 +51,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]![image](https://user-images.githubusercontent.com/113893981/217988524-f47ffe39-33be-4df9-ba43-106835d7d1dc.png)
+[![Product Name Screen Shot]
+![image](https://user-images.githubusercontent.com/113893981/217988524-f47ffe39-33be-4df9-ba43-106835d7d1dc.png)
+![image](https://user-images.githubusercontent.com/113893981/217988800-6ef3d1ab-9e07-42dc-83fd-b80aba130f58.png)
 
 This is a small Jira project that aims to learn, test and evaluate the ability during the learning process at [CyberSoft](https://cybersoft.edu.vn).
 
@@ -60,10 +62,7 @@ This is a small Jira project that aims to learn, test and evaluate the ability d
 
 
 ### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![React][React.js]][React-url]
+* [![React][React.js]][[React-url]](https://reactjs.org)
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
