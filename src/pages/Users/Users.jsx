@@ -98,6 +98,7 @@ const Users = () => {
           <Popconfirm
             title="Are you sure to delete this user?"
             onConfirm={() => {
+              console.log(record.userId);
               dispatch(deleteUserApi(record.userId));
             }}
             okText="Yes"
