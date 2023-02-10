@@ -1,32 +1,10 @@
-# FE73 - Capstone Project 3 Cybersoft
+# FE73 - Frontend - Cybersoft Academy - JIRA
 
 ## Task assignment
-### [Truong Van Dai](https://github.com/Sc1l3nt)
-- Xây dựng và reponsive các trang index, search và detail.
-- Xây dựng productReducer.
-- Xây dựng và reponsive template.
+### [Truong Van Dai](https://github.com/Sc1l3nt) & [Tran Minh Bao](https://github.com/tminhbao)
 
-### [Tran Minh Bao](https://github.com/tminhbao)
-- Xây dựng và reponsive các trang login, register, profile và carts.
-- Xây dụng userReducer.
-
-## Function
-- Hiển thị danh sách sản phẩm
-- Phân trang sản phẩm
-- Xem chi tiết sản phẩm
-- Tìm kiếm sản phẩm theo tên và sắp xếp theo giá tăng dần, giảm dần
-- Đăng nhập
-- Đăng nhập bằng Facebook
-- Đăng ký
-- Thay đổi thông tin người dùng
-- Thay đổi mật khẩu
-- Thêm sản phẩm vào giỏ hàng
-- Submit Order
-- Yêu thích sản phẩm
-- Thay đổi số lượng sản phẩm trong giỏ hàng
-- Submit Order
-- Xem Order History
-- Xem Favorite List
+[View More!]
+![image](https://user-images.githubusercontent.com/113893981/217982192-76668b62-ee08-47ef-b30b-6641bb4465c8.png)
 
 ## Installed Packages
 - UI: sass, bootstrap, google fonts, ant-design
