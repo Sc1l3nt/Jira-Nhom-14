@@ -62,8 +62,8 @@ This is a small Jira project that aims to learn, test and evaluate the ability d
 
 
 ### Built With
-* [![React][React.js]][[React-url]](https://reactjs.org)
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![React][React.js]](https://reactjs.org)
+* [![Bootstrap][Bootstrap.com]](https://getbootstrap.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
