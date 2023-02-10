@@ -12,7 +12,7 @@ const HomeHeader = (props) => {
             <div className='d-flex justify-content-between align-items-center'>
                 <div className='btn' onClick={props.handleChangeCollapsed}>{props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</div>
                 <div className='d-flex'>
-                    <Search/>
+                    <Search widthShort='15rem' widthLong='30rem'/>
                     <AccountDropDown />
                 </div>
             </div>

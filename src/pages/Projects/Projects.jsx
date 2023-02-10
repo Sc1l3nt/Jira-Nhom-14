@@ -2,7 +2,6 @@ import {
   Avatar,
   Button,
   Col,
-  Input,
   List,
   Modal,
   Row,
@@ -14,9 +13,8 @@ import {
 import {
   DeleteOutlined,
   EditOutlined,
-  SearchOutlined,
 } from "@ant-design/icons";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
@@ -26,10 +24,10 @@ import {
   getAllProjectApi,
 } from "../../redux/reducers/projectReducer";
 import { history } from "../../index";
+import { getTaskId } from "../../redux/reducers/taskReducer";
 
 const Projects = () => {
   const tableIsBreak = useMediaQuery({ maxWidth: 624 });
-  const debounceSearchRef = useRef(null);
   const { projectList } = useSelector((state) => state.projectReducer);
   const dispatch = useDispatch();
 
@@ -40,22 +38,6 @@ const Projects = () => {
   useEffect(() => {
     dispatch(getAllProjectApi());
   }, [dispatch]);
-
-  const handleSearch = (e) => {
-    let params = {};
-
-    if (e.target.value.length > 0) {
-      params = { keyword: e.target.value };
-    }
-
-    if (debounceSearchRef.current) {
-      clearTimeout(debounceSearchRef.current);
-    }
-
-    debounceSearchRef.current = setTimeout(() => {
-      dispatch(getAllProjectApi(params));
-    }, 400);
-  };
 
   const showConfirmDeleteProjectModal = ({ projectName, id: projectId }) => {
     return () => {
@@ -92,12 +74,6 @@ const Projects = () => {
         <Typography.Title level={3} className="flex-grow me-5">
           Projects
         </Typography.Title>
-          <Input
-            allowClear
-            suffix={<SearchOutlined />}
-            className="w-25"
-            onChange={handleSearch}
-          />
       </div>
 
       {!tableIsBreak && (
@@ -113,7 +89,9 @@ const Projects = () => {
             dataIndex="projectName"
             key="projectName"
             render={(projectName, record) => (
-              <Link to={`/projects/${record.id}/board`}>{projectName}</Link>
+              <Link to={`/projects/${record.id}/board`} onClick={()=>{
+                dispatch(getTaskId({id:record.id, name:record.projectName}))
+              }}>{projectName}</Link>
             )}
             sorter={(a, b) => a.projectName.localeCompare(b.projectName)}
           />

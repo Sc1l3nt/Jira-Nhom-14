@@ -1,9 +1,11 @@
 import { Modal } from 'antd';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
 import { deleteProjectApi, getAllProjectApi } from '../../redux/reducers/projectReducer';
+import { getTaskId } from '../../redux/reducers/taskReducer';
 
 const ProjectsMobile = () => {
     const { projectList } = useSelector((state) => state.projectReducer);
@@ -45,7 +47,11 @@ const ProjectsMobile = () => {
     const renderCardProject = () => {
         return projectList.map((project, i) => {
             return <div key={i}>
-                <ProjectCard project={project} handleCard={handleCard} showConfirmDeleteProjectModal={showConfirmDeleteProjectModal} />
+                <Link to={`/projects/${project.id}/board`} onClick={() => {
+                    dispatch(getTaskId({ id: project.id, name: project.projectName }))
+                }}>
+                    <ProjectCard project={project} handleCard={handleCard} showConfirmDeleteProjectModal={showConfirmDeleteProjectModal} />
+                </Link>
             </div>
         })
     }

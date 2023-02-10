@@ -2,6 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { http } from "../../utils/config";
 
 const initialState = {
+  taskId: {
+    id:'',
+    name: '',
+  },
   taskTypes: [],
   taskDetail: null,
   taskError: null,
@@ -20,6 +24,9 @@ const taskReducer = createSlice({
     setTaskErrorAction: (state, action) => {
       state.taskError = action.payload;
     },
+    getTaskId: (state, action)=>{
+      state.taskId = action.payload;
+    }
   },
 });
 
@@ -27,6 +34,7 @@ export const {
   getAllTaskTypesAction,
   getTaskDetailAction,
   setTaskErrorAction,
+  getTaskId,
 } = taskReducer.actions;
 
 export default taskReducer.reducer;

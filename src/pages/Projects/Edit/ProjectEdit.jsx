@@ -89,7 +89,7 @@ const ProjectEdit = () => {
   }
 
   return (
-    <div style={{ maxWidth: 980 }} className="mx-auto">
+    <div style={{ maxWidth: 980 }} className="container my-3">
       <Breadcrumb className="mb-4">
         <Breadcrumb.Item>
           <Link to="/projects">Projects</Link>

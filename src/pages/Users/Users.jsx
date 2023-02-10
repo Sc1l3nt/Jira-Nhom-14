@@ -27,13 +27,6 @@ const Users = () => {
     });
   };
 
-  const clearAll = () => {
-    setState({
-      filteredInfo: null,
-      sortedInfo: null,
-    });
-  };
-
   const handleEditUser = (user) => () => {
     setSelectedUser(user);
     setShowEditUserModal(true);
@@ -118,11 +111,10 @@ const Users = () => {
   ];
 
   return (
-    <div>
-      <Space style={{ marginBottom: 16 }}>
-        <Button onClick={clearAll}>Clear filters and sorters</Button>
-      </Space>
-
+    <div className="container my-3 px-4">
+      <div className="mb-3">
+        <h2>User List</h2>
+      </div>
       <Table
         columns={columns}
         dataSource={customedListForNumber}

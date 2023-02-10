@@ -8,7 +8,7 @@ import {
   setProjectDetailNullAction,
 } from "../../../redux/reducers/projectReducer";
 import AddMemberModal from "../../../components/AddMemberModal/AddMemberModal";
-import { Breadcrumb, Button, Form, Input, Select, Typography } from "antd";
+import { Button, Form, Input, Select, Typography } from "antd";
 import { Link } from "react-router-dom";
 import TinyTextArea from "../../../components/TinyTextArea/TinyTextArea";
 
@@ -70,7 +70,7 @@ const ProjectNew = () => {
   };
 
   return (
-    <div style={{ maxWidth: 980 }} className="container my-5"><div className="mb-4">
+    <div style={{ maxWidth: 980 }} className="container my-4"><div className="mb-4">
         <Typography.Title level={3}>New project</Typography.Title>
       </div>
 

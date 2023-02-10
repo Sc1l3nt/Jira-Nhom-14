@@ -4,6 +4,7 @@ import React from 'react'
 import { ACCESS_TOKEN, USER_LOGIN } from '../../constants';
 import Swal from "sweetalert2";
 import { history } from "../../index";
+import { Link } from 'react-router-dom';
 
 const UserCard = (props) => {
     const { userLogin } = props
@@ -28,7 +29,7 @@ const UserCard = (props) => {
                     {
                         key: '1',
                         icon: <SettingOutlined className='fs-5' />,
-                        label: (<a href='profile'>Profile Setting</a>),
+                        label: (<Link to='profile'>Profile Setting</Link>),
                     },
                     {
                         key: '2',

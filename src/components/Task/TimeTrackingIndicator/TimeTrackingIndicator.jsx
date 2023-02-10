@@ -1,7 +1,6 @@
 import React from "react";
 
 export const TimeTrackingIndicator = ({
-  originalEstimate,
   timeTrackingSpent,
   timeTrackingRemaining,
   spentWidth,
