@@ -32,7 +32,6 @@ const Login = () => {
         .matches(/^[0-9]+$/g, "Phone must be a number!"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       formLogin.setTouched({
         email: true,
         password: true,
@@ -56,7 +55,6 @@ const Login = () => {
   };
 
   const responseFacebook = (response) => {
-    console.log("response", response);
     if (response) {
       const facebookToken = response.accessToken;
       const asyncAction = loginFacebookApi(facebookToken);
