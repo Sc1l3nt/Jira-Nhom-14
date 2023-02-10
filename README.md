@@ -48,8 +48,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[YouTube]
-![image](https://www.youtube.com/watch?v=QhiNpLD0-JY)
+[YouTube](https://www.youtube.com/watch?v=QhiNpLD0-JY)
+https://www.youtube.com/watch?v=QhiNpLD0-JY
 
 
 This is a small Jira project that aims to learn, test and evaluate the ability during the learning process at [CyberSoft Academy](https://cybersoft.edu.vn).
