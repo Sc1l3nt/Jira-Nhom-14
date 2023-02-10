@@ -6,8 +6,16 @@
   <a href="https://github.com/Sc1l3nt/Jira-Nhom-14">
     <img src="public/img/Jira-Logo.png" alt="Logo" width="100" height="100">
   </a>
-
+  
   <h1 align="center">Jira</h1>
+  
+  <p align="center">
+    <a href="#">View Demo</a>
+    ·
+    <a href="https://github.com/Sc1l3nt/Jira-Nhom-14">GitHub</a>
+    ·
+    <a href="#">YouTube</a>
+  </p>
 </div>
 
 
