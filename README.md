@@ -14,7 +14,7 @@
     ·
     <a href="https://github.com/Sc1l3nt/Jira-Nhom-14">GitHub</a>
     ·
-    <a href="#">YouTube</a>
+    <a href="https://www.youtube.com/watch?v=QhiNpLD0-JY">YouTube</a>
   </p>
 </div>
 
@@ -48,7 +48,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[YouTube]()
+[YouTube]
+![image](https://www.youtube.com/watch?v=QhiNpLD0-JY)
 
 
 This is a small Jira project that aims to learn, test and evaluate the ability during the learning process at [CyberSoft Academy](https://cybersoft.edu.vn).
