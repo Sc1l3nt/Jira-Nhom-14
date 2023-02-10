@@ -4,18 +4,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/Sc1l3nt/Jira-Nhom-14">
-    <img src="public/img/Jira-Logo.png" alt="Logo" width="80" height="80">
+    <img src="public/img/Jira-Logo.png" alt="Logo" width="100" height="100">
   </a>
 
-  <h1 align="center">Jira</h3>
-
-  <p align="center">
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">GitHub</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">YouTube</a>
-  </p>
+  <h1 align="center">Jira</h1>
 </div>
 
 
