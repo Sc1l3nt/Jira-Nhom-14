@@ -52,13 +52,13 @@ const Profile = () => {
         setTimeout(() => {
           console.log("setTimeout");
           dispatch(getMyInfoApi());
-          // Swal.fire({
-          //   title: "User updated successfully",
-          //   icon: "success",
-          //   confirmButtonText: "OK",
-          // });
-          // formik.resetForm();
-          //window.location.reload();
+          Swal.fire({
+            title: "User updated successfully",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          formik.resetForm();
+          window.location.reload();
         }, 400);
       })
     );
