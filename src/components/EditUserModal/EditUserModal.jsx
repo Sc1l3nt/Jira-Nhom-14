@@ -40,8 +40,12 @@ const EditUserModal = ({ visible, onCancel, user }) => {
   });
 
   const handleSubmit = async () => {
-    await dispatch(changeInfoApi(formik.values));
-    await dispatch(getAllUserApi());
+    console.log(formik.values);
+    dispatch(
+      changeInfoApi(formik.values, () => {
+        dispatch(getAllUserApi());
+      })
+    );
     Swal.fire({
       title: "User updated successfully",
       icon: "success",

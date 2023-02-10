@@ -70,7 +70,8 @@ const ProjectNew = () => {
   };
 
   return (
-    <div style={{ maxWidth: 980 }} className="container my-4"><div className="mb-4">
+    <div style={{ maxWidth: 980 }} className="container my-4">
+      <div className="mb-4">
         <Typography.Title level={3}>New project</Typography.Title>
       </div>
 
@@ -131,7 +132,11 @@ const ProjectNew = () => {
           label={<Typography.Text strong>Descriptions</Typography.Text>}
           style={{ minHeight: 230 }}
         >
-          <TinyTextArea value={formik.values.description} name={"description"} setFieldValue={formik.setFieldValue}/>
+          <TinyTextArea
+            value={formik.values.description}
+            name={"description"}
+            setFieldValue={formik.setFieldValue}
+          />
         </Form.Item>
 
         <div className="flex">
@@ -148,7 +153,7 @@ const ProjectNew = () => {
 
       {projectDetail && (
         <AddMemberModal
-          visible={showAddMembersModal}
+          visible={false}
           onCancel={handleCancel}
           project={projectDetail}
         />
