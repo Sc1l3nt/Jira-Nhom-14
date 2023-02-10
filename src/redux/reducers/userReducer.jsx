@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { http } from "../../utils/config";
 import { history } from "../../index";
-import { ACCESS_TOKEN, USER_LOGIN } from "../../constants";
+import { ACCESS_TOKEN, TOKEN_CYBERSOFT, USER_LOGIN } from "../../constants";
+import axios from "axios";
 
 const initialState = {
   userLogin: JSON.parse(localStorage.getItem(USER_LOGIN)) || null,
   userProfile: null,
   userList: [],
   userByProjectId: null,
+  me: null,
 };
 
 const userReducer = createSlice({
@@ -35,6 +37,9 @@ const userReducer = createSlice({
     getMyInfoAction: (state, action) => {
       state.userLogin = action.payload;
     },
+    getMeAction: (state, action) => {
+      state.me = action.payload;
+    },
   },
 });
 
@@ -46,6 +51,7 @@ export const {
   deleteUserAction,
   loginFacebookAction,
   getMyInfoAction,
+  getMeAction,
 } = userReducer.actions;
 
 export default userReducer.reducer;
@@ -85,12 +91,13 @@ export const registerApi = (userRegister) => {
   };
 };
 
-export const changeInfoApi = (userChangeInfo) => {
+export const changeInfoApi = (userChangeInfo, callback) => {
   return async (dispatch) => {
     try {
       const result = await http.put("/Users/editUser", userChangeInfo);
       const action = changeInfoAction(result.data.content);
       dispatch(action);
+      if (callback) callback();
     } catch (error) {
       console.log(error);
     }
@@ -115,20 +122,31 @@ export const deleteUserApi = (userId) => {
   };
 };
 
-export const getMyInfoApi = (params) => {
+export const getMyInfoApi = () => {
   return async (dispatch) => {
-    const result = await http.get("/Users/getUser", { params });
-    const userLoginLocal = JSON.parse(localStorage.getItem(USER_LOGIN));
-    const me = result.data.content.find(
-      (user) => user.userId === userLoginLocal.userId
-    );
-    if (!me) {
-      localStorage.removeItem(ACCESS_TOKEN);
-      localStorage.removeItem(USER_LOGIN);
-      window.location.reload();
-      return;
-    }
-    const action = getAllUserAction(me);
-    dispatch(action);
+    //const result = await http.get("/Users/getUser");
+    axios({
+      url: "https://jiranew.cybersoft.edu.vn/api/Users/getUser",
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`,
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    })
+      .then((result) => {
+        const userLoginLocal = JSON.parse(localStorage.getItem(USER_LOGIN));
+        const me = result.data.content.find(
+          (user) => user.userId === userLoginLocal.userId
+        );
+        if (!me) {
+          localStorage.removeItem(ACCESS_TOKEN);
+          localStorage.removeItem(USER_LOGIN);
+          window.location.reload();
+          return;
+        }
+        const action = getMeAction(me);
+        dispatch(action);
+      })
+      .catch((err) => console.log(err));
   };
 };

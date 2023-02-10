@@ -3,12 +3,12 @@ import * as yup from "yup";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Button, Col, Form, Input, Row, Typography } from "antd";
-import { changeInfoApi } from "../../redux/reducers/userReducer";
+import { changeInfoApi, getMyInfoApi } from "../../redux/reducers/userReducer";
 import Swal from "sweetalert2";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { userLogin } = useSelector((state) => state.userReducer);
+  const { userLogin, me } = useSelector((state) => state.userReducer);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -40,18 +40,28 @@ const Profile = () => {
   });
 
   const handleSubmit = async () => {
-    console.log(formik.values);
-    await dispatch(changeInfoApi(formik.values));
-    setTimeout(() => {
-      //dispatch(getUser); sau khi xog, reload lại, kiểu lấy lại thông tin
-      Swal.fire({
-        title: "User updated successfully",
-        icon: "success",
-        confirmButtonText: "OK",
-      });
-      formik.resetForm();
-      window.location.reload();
-    }, 400);
+    const updatedData = {
+      id: formik.values.id,
+      passWord: formik.values.password,
+      email: formik.values.email,
+      name: formik.values.name,
+      phoneNumber: formik.values.phoneNumber,
+    };
+    dispatch(
+      changeInfoApi(updatedData, () => {
+        setTimeout(() => {
+          console.log("setTimeout");
+          dispatch(getMyInfoApi());
+          // Swal.fire({
+          //   title: "User updated successfully",
+          //   icon: "success",
+          //   confirmButtonText: "OK",
+          // });
+          // formik.resetForm();
+          //window.location.reload();
+        }, 400);
+      })
+    );
   };
   return (
     <div style={{ maxWidth: 980 }} className="container my-5">
