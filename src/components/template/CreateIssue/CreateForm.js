@@ -1,18 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Form, Input, Row, Select, Slider } from "antd";
-import {
-  CheckCircleFilled,
-  WarningFilled,
-  PlusSquareFilled,
-  CaretUpOutlined,
-  UpOutlined,
-  MinusOutlined,
-  DownOutlined,
-  CaretDownOutlined,
-} from "@ant-design/icons";
-import "../../../assets/scss/CreateIssue/CreateForm.scss";
-import TinyTextArea from "../../TinyTextArea/TinyTextArea";
-import { history } from "../../../index";
+import { Button, Form, Input, Select, Slider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
