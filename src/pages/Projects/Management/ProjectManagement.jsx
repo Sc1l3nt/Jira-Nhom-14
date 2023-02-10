@@ -306,15 +306,6 @@ const ProjectManagement = () => {
 
                           {listTaskItem.statusName === "BACKLOG" && (
                             <div>
-                              {!showNewTaskTextarea && (
-                                <button
-                                  onClick={() => setShowNewTaskTextarea(true)}
-                                  className="btn btn-primary d-flex align-items-center mt-2"
-                                >
-                                  <PlusOutlined className="mr-1" />
-                                  <span className="ms-2">Create</span>
-                                </button>
-                              )}
                               {showNewTaskTextarea && (
                                 <>
                                   <div
