@@ -10,7 +10,7 @@
   <h1 align="center">Jira</h1>
   
   <p align="center">
-    <a href="#">View Demo</a>
+    <a href="dai-bao-project.surge.sh">View Demo</a>
     ·
     <a href="https://github.com/Sc1l3nt/Jira-Nhom-14">GitHub</a>
     ·
