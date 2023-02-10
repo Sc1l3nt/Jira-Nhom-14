@@ -65,13 +65,13 @@ const Users = () => {
     onFilter: (value, record) =>
       record[dataIndex]
         ? record[dataIndex]
-            .toString()
-            .toLowerCase()
-            .includes(value.toLowerCase())
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
         : "",
   });
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (confirm) => {
     confirm();
   };
 
