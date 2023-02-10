@@ -3,8 +3,8 @@ import { http } from "../../utils/config";
 
 const initialState = {
   taskId: {
-    id:'',
-    name: '',
+    id: "",
+    name: "",
   },
   taskTypes: [],
   taskDetail: null,
@@ -24,9 +24,9 @@ const taskReducer = createSlice({
     setTaskErrorAction: (state, action) => {
       state.taskError = action.payload;
     },
-    getTaskId: (state, action)=>{
+    getTaskId: (state, action) => {
       state.taskId = action.payload;
-    }
+    },
   },
 });
 
@@ -167,6 +167,17 @@ export const removeTaskApi = (taskId, callback) => {
       if (callback) callback();
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const createTaskFormApi = (data, callback) => {
+  return async (dispatch) => {
+    try {
+      await http.post(`/Project/createTask`, data);
+      if (callback) callback();
+    } catch (err) {
+      console.log(err);
     }
   };
 };
